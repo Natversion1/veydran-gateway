@@ -7,7 +7,7 @@
   <title>Veydran Interstellar Authority</title>
   <meta name="description" content="Veydran Interstellar Authority Terran access node." />
   <style>body.vey-loading{visibility:hidden}</style>
-  <link rel="stylesheet" href="gateway.css?v=20261001-2" />
+  <link rel="stylesheet" href="gateway.css?v=20261001-3" />
 </head>
 <body class="vey-loading">
   <div class="scanline" aria-hidden="true"></div>
@@ -53,21 +53,21 @@
         <a href="https://vmail.veydran.space/">OPEN SERVICE</a>
       </article>
 
-      <article class="service" data-denied="IMPERIAL RECORDS ACCESS DENIED // TERRAN CLEARANCE INSUFFICIENT.">
+      <article class="service" data-denied-title="ACCESS DENIED" data-denied="IMPERIAL RECORDS ACCESS DENIED // TERRAN CLEARANCE INSUFFICIENT.">
         <div class="service-code">02 // ARCHIVES</div>
         <h3>Imperial Records</h3>
         <p>Personnel, planetary and operational archive.</p>
         <button type="button">REQUEST ACCESS</button>
       </article>
 
-      <article class="service" data-denied="PLANETARY ASSESSMENT // EARTH // INVESTIGATION ACTIVE // FINAL CLASSIFICATION WITHHELD.">
+      <article class="service" data-denied-title="ASSESSMENT WITHHELD" data-denied="PLANETARY ASSESSMENT // EARTH // INVESTIGATION ACTIVE // FINAL CLASSIFICATION WITHHELD.">
         <div class="service-code">03 // ASSESSMENT</div>
         <h3>Planetary Assessment</h3>
         <p>Current Veydran analysis of Terran civilisation.</p>
         <button type="button">VIEW ASSESSMENT</button>
       </article>
 
-      <article class="service" data-denied="COMMAND NETWORK CLASSIFIED // QUERY LOGGED // PLEASE REMAIN WHERE YOU ARE.">
+      <article class="service" data-denied-title="COMMAND NETWORK CLASSIFIED" data-denied="COMMAND NETWORK CLASSIFIED // QUERY LOGGED // PLEASE REMAIN WHERE YOU ARE.">
         <div class="service-code">04 // COMMAND</div>
         <h3>Command Network</h3>
         <p>Operational command and classified strategic systems.</p>
@@ -85,25 +85,30 @@
       </div>
 
       <div class="ad-grid">
-        <article class="ad-card hot">
-          <div class="ad-tag">SPONSORED // SOCIAL</div>
-          <h3>HOT GARGAZIAN SINGLES IN YOUR SECTOR</h3>
-          <p>Several compatible organisms have allegedly detected your presence.</p>
-          <button type="button" id="singlesAd">VIEW COMPATIBLE ORGANISMS</button>
+        <article class="ad-card hot artwork-card" id="singlesCard">
+          <button type="button" id="singlesAd" class="artwork-button" aria-label="View Hot Gargazian Singles advert">
+            <img id="singlesArtwork" src="assets/hot-gargazian-singles.png" alt="Hot Gargazian Singles in your sector" />
+            <span class="artwork-fallback">
+              <span class="ad-tag">SPONSORED // SOCIAL</span>
+              <strong>HOT GARGAZIAN SINGLES IN YOUR SECTOR</strong>
+              <span>Several compatible organisms have allegedly detected your presence.</span>
+              <em>VIEW COMPATIBLE ORGANISMS</em>
+            </span>
+          </button>
         </article>
 
         <article class="ad-card">
           <div class="ad-tag">SPONSORED // DOMESTIC</div>
           <h3>ORBITAL STORAGE RUNNING LOW?</h3>
           <p>Upgrade to six additional moons of encrypted household capacity.</p>
-          <button type="button" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS.">CHECK ELIGIBILITY</button>
+          <button type="button" data-ad-title="SERVICE UNAVAILABLE" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS.">CHECK ELIGIBILITY</button>
         </article>
 
         <article class="ad-card">
           <div class="ad-tag">SPONSORED // INSURANCE</div>
           <h3>PROTECT YOUR BROOD POD</h3>
           <p>Comprehensive accidental plasma, meteor and ceremonial damage cover.</p>
-          <button type="button" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS.">GET QUOTE</button>
+          <button type="button" data-ad-title="QUOTE DECLINED" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS.">GET QUOTE</button>
         </article>
       </div>
     </section>
@@ -122,6 +127,18 @@
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
+  <div class="modal hidden" id="noticeModal" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
+    <div class="modal-card">
+      <div class="modal-code" id="noticeCode">VEYDRAN NETWORK // REQUEST RESPONSE</div>
+      <h2 id="noticeTitle">REQUEST REJECTED</h2>
+      <p class="modal-big" id="noticeMessage">Terran clearance insufficient.</p>
+      <div class="modal-actions single-action">
+        <button type="button" id="closeNotice">ACKNOWLEDGE FAILURE</button>
+      </div>
+      <div class="modal-fine">If your Terran browser suppresses civic overlays, a duplicate notice will appear at the bottom of the display.</div>
+    </div>
+  </div>
+
   <div class="modal hidden" id="ageModal" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
     <div class="modal-card">
       <div class="modal-code">VE-Y18 // AGE VERIFICATION</div>
@@ -137,6 +154,6 @@
   </div>
 
   <script>window.setTimeout(()=>document.body.classList.remove('vey-loading'),1500);</script>
-  <script src="gateway.js?v=20261001-2"></script>
+  <script src="gateway.js?v=20261001-3"></script>
 </body>
 </html>
