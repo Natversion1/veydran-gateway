@@ -15,6 +15,14 @@
 #noticeModal .modal-card{border-color:rgba(57,214,255,.42);box-shadow:0 24px 90px rgba(0,0,0,.7),0 0 40px rgba(57,214,255,.06)}
 #noticeModal .modal-code{color:var(--cyan)}
 
+/* English translation layer for in-world adverts. Artwork stays Veydran. */
+.ad-grid .ad-card::after{display:none;white-space:pre-line;margin-top:12px;padding:11px 13px;border-top:1px solid rgba(57,214,255,.20);background:rgba(3,17,27,.96);color:#bfefff;font-size:11px;line-height:1.5;letter-spacing:.2px;text-align:left}
+html[lang="en"] .ad-grid .ad-card::after{display:block}
+html[lang="en"] .ad-grid .ad-card:nth-child(1)::after{content:"TERRAN TRANSLATION // SOCIAL\A HOT GARGAZIAN SINGLES IN YOUR SECTOR\A Several compatible organisms have allegedly detected your presence."}
+html[lang="en"] .ad-grid .ad-card:nth-child(2)::after{content:"TERRAN TRANSLATION // DOMESTIC\A ORBITAL STORAGE RUNNING LOW?\A Upgrade to six additional moons of encrypted household capacity."}
+html[lang="en"] .ad-grid .ad-card:nth-child(3)::after{content:"TERRAN TRANSLATION // INSURANCE\A PROTECT YOUR BROOD POD\A Comprehensive accidental plasma, meteor and ceremonial damage cover."}
+.artwork-card::after{margin:8px 0 0}
+
 @media(max-width:900px){.ad-grid{grid-template-columns:1fr 1fr}.ad-card:last-child{grid-column:1/-1}.artwork-card{grid-column:1/-1}}
 @media(max-width:760px){.topbar{align-items:flex-start}.brand-name{font-size:18px}.hero{padding-top:52px}.directory{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}.ad-grid{grid-template-columns:1fr}.ad-card:last-child{grid-column:auto}.artwork-card{grid-column:auto}.artwork-fallback{min-height:220px;padding:20px}}
 @media(max-width:520px){.status-grid{grid-template-columns:1fr}.brand-sub{display:none}.service{min-height:205px}.modal-card{padding:22px}.modal-card h2{font-size:28px}.artwork-fallback{min-height:190px}.artwork-fallback strong{font-size:24px}}
