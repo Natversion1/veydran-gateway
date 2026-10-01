@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0" stop-color="#08030d" stop-opacity=".96"/>
+      <stop offset="1" stop-color="#16051d" stop-opacity=".92"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" x2="1">
+      <stop offset="0" stop-color="#06131f" stop-opacity=".97"/>
+      <stop offset="1" stop-color="#071d2b" stop-opacity=".94"/>
+    </linearGradient>
+    <filter id="pinkGlow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="cyanGlow"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <image href="../Singles.png" x="0" y="0" width="1536" height="1024" preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- Translation plates deliberately cover the Veydran copy while preserving the artwork. -->
+  <rect x="430" y="35" width="1010" height="168" rx="18" fill="url(#panel)" stroke="#ff4fd8" stroke-width="3"/>
+  <text x="935" y="102" text-anchor="middle" fill="#ff69df" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="900" letter-spacing="3" filter="url(#pinkGlow)">HOT GARGAZIAN SINGLES</text>
+  <text x="935" y="160" text-anchor="middle" fill="#d9f8ff" font-family="Arial,Helvetica,sans-serif" font-size="42" font-weight="900" letter-spacing="5" filter="url(#cyanGlow)">IN YOUR SECTOR</text>
+  <text x="935" y="191" text-anchor="middle" fill="#87dff8" font-family="Arial,Helvetica,sans-serif" font-size="17" letter-spacing="2">SEVERAL COMPATIBLE ORGANISMS HAVE DETECTED YOUR PRESENCE</text>
+
+  <rect x="1088" y="246" width="354" height="142" rx="18" fill="url(#panel)" stroke="#ff4fd8" stroke-width="3"/>
+  <text x="1265" y="296" text-anchor="middle" fill="#ff79e5" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">CURRENT SECTOR</text>
+  <text x="1265" y="334" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="900">LOCAL MATCHES</text>
+  <text x="1265" y="365" text-anchor="middle" fill="#9beaff" font-family="Arial,Helvetica,sans-serif" font-size="18">PROXIMITY: ALLEGEDLY CLOSE</text>
+
+  <rect x="785" y="410" width="680" height="90" rx="32" fill="#e31fbf" fill-opacity=".9" stroke="#ff8ce9" stroke-width="3"/>
+  <text x="1125" y="468" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="31" font-weight="900" letter-spacing="2">VIEW COMPATIBLE ORGANISMS  &gt;&gt;&gt;</text>
+
+  <rect x="20" y="530" width="1496" height="90" rx="6" fill="#05080d" fill-opacity=".96" stroke="#ff4fd8" stroke-width="2"/>
+  <text x="90" y="582" fill="#ff67df" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">MATCHING</text>
+  <text x="380" y="582" fill="#bff6ff" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">GENETIC FILTERS</text>
+  <text x="760" y="582" fill="#bff6ff" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">ORBITAL DISTANCE</text>
+  <text x="1125" y="582" fill="#ffb5ed" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">PRIVACY QUESTIONABLE</text>
+
+  <rect x="450" y="650" width="650" height="330" rx="16" fill="url(#blue)" stroke="#32d9ff" stroke-width="3"/>
+  <text x="775" y="720" text-anchor="middle" fill="#ff4b55" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="900" letter-spacing="2" filter="url(#pinkGlow)">ACCESS RESTRICTED</text>
+  <text x="775" y="760" text-anchor="middle" fill="#bff6ff" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="2">VEYDRAN INTERSTELLAR DECENCY AUTHORITY</text>
+  <text x="775" y="820" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="900">YOU MUST BE OVER 200 CYCLES OLD</text>
+  <text x="775" y="858" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="800">TO VIEW THIS SERVICE</text>
+  <text x="775" y="910" text-anchor="middle" fill="#8bdff7" font-family="Arial,Helvetica,sans-serif" font-size="17">TERRAN AGE DOCUMENTATION IS NOT ACCEPTED.</text>
+  <text x="775" y="944" text-anchor="middle" fill="#ff77da" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="800">FALSE DECLARATIONS MAY RESULT IN CIVIC SHAME.</text>
+
+  <rect x="1190" y="675" width="260" height="230" rx="16" fill="#071521" fill-opacity=".94" stroke="#30d8ff" stroke-width="3"/>
+  <text x="1320" y="742" text-anchor="middle" fill="#9ceaff" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800">MINIMUM AGE</text>
+  <text x="1320" y="830" text-anchor="middle" fill="#ff3f5b" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="900" filter="url(#pinkGlow)">200+</text>
+  <text x="1320" y="868" text-anchor="middle" fill="#a7eaff" font-family="Arial,Helvetica,sans-serif" font-size="15">CYCLES</text>
+</svg>
