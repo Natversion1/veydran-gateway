@@ -7,7 +7,7 @@
   <title>Veydran Interstellar Authority</title>
   <meta name="description" content="Veydran Interstellar Authority Terran access node." />
   <style>body.vey-loading{visibility:hidden}</style>
-  <link rel="stylesheet" href="gateway.css?v=20261001-3" />
+  <link rel="stylesheet" href="gateway.css?v=20261001-4" />
 </head>
 <body class="vey-loading">
   <div class="scanline" aria-hidden="true"></div>
@@ -85,9 +85,9 @@
       </div>
 
       <div class="ad-grid">
-        <article class="ad-card hot artwork-card" id="singlesCard">
+        <article class="ad-card hot artwork-card featured" id="singlesCard">
           <button type="button" id="singlesAd" class="artwork-button" aria-label="View Hot Gargazian Singles advert">
-            <img id="singlesArtwork" src="Singles.png" alt="Hot Gargazian Singles in your sector" />
+            <img id="singlesArtwork" src="Singles.png" data-vey-src="Singles.png" data-en-src="assets/singles-english.webp" alt="Hot Gargazian Singles in your sector" />
             <span class="artwork-fallback">
               <span class="ad-tag">SPONSORED // SOCIAL</span>
               <strong>HOT GARGAZIAN SINGLES IN YOUR SECTOR</strong>
@@ -95,20 +95,23 @@
               <em>VIEW COMPATIBLE ORGANISMS</em>
             </span>
           </button>
+          <div class="ad-translation"><b>TERRAN TRANSLATION // SOCIAL</b><strong>HOT GARGAZIAN SINGLES IN YOUR SECTOR</strong><span>Several compatible organisms have allegedly detected your presence.</span></div>
         </article>
 
-        <article class="ad-card">
-          <div class="ad-tag">SPONSORED // DOMESTIC</div>
-          <h3>ORBITAL STORAGE RUNNING LOW?</h3>
-          <p>Upgrade to six additional moons of encrypted household capacity.</p>
-          <button type="button" data-ad-title="SERVICE UNAVAILABLE" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS.">CHECK ELIGIBILITY</button>
+        <article class="ad-card artwork-card" id="storageCard">
+          <button type="button" class="artwork-button" data-ad-title="SERVICE UNAVAILABLE" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS." aria-label="View orbital storage advert">
+            <img src="assets/orbital-storage.webp" data-vey-src="assets/orbital-storage.webp" data-en-src="assets/orbital-storage.webp" alt="Orbital storage advert" />
+            <span class="artwork-fallback"><span class="ad-tag">SPONSORED // DOMESTIC</span><strong>ORBITAL STORAGE RUNNING LOW?</strong><span>Upgrade to six additional moons of encrypted household capacity.</span><em>CHECK ELIGIBILITY</em></span>
+          </button>
+          <div class="ad-translation"><b>TERRAN TRANSLATION // DOMESTIC</b><strong>ORBITAL STORAGE RUNNING LOW?</strong><span>Upgrade to six additional moons of encrypted household capacity.</span></div>
         </article>
 
-        <article class="ad-card">
-          <div class="ad-tag">SPONSORED // INSURANCE</div>
-          <h3>PROTECT YOUR BROOD POD</h3>
-          <p>Comprehensive accidental plasma, meteor and ceremonial damage cover.</p>
-          <button type="button" data-ad-title="QUOTE DECLINED" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS.">GET QUOTE</button>
+        <article class="ad-card artwork-card" id="broodCard">
+          <button type="button" class="artwork-button" data-ad-title="QUOTE DECLINED" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS." aria-label="View brood pod insurance advert">
+            <img src="assets/brood-pod-insurance.webp" data-vey-src="assets/brood-pod-insurance.webp" data-en-src="assets/brood-pod-insurance.webp" alt="Brood pod insurance advert" />
+            <span class="artwork-fallback"><span class="ad-tag">SPONSORED // INSURANCE</span><strong>PROTECT YOUR BROOD POD</strong><span>Comprehensive accidental plasma, meteor and ceremonial damage cover.</span><em>GET QUOTE</em></span>
+          </button>
+          <div class="ad-translation"><b>TERRAN TRANSLATION // INSURANCE</b><strong>PROTECT YOUR BROOD POD</strong><span>Comprehensive accidental plasma, meteor and ceremonial damage cover.</span></div>
         </article>
       </div>
     </section>
@@ -154,6 +157,6 @@
   </div>
 
   <script>window.setTimeout(()=>document.body.classList.remove('vey-loading'),1500);</script>
-  <script src="gateway.js?v=20261001-3"></script>
+  <script src="gateway.js?v=20261001-4"></script>
 </body>
 </html>
