@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="x-vey">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#020a10" />
+  <title>Veydran Interstellar Authority</title>
+  <meta name="description" content="Veydran Interstellar Authority Terran access node." />
+  <style>body.vey-loading{visibility:hidden}</style>
+  <link rel="stylesheet" href="gateway.css?v=20261001-2" />
+</head>
+<body class="vey-loading">
+  <div class="scanline" aria-hidden="true"></div>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="seal" aria-hidden="true"><span>V</span></div>
+        <div>
+          <div class="brand-name">Veydran Interstellar Authority</div>
+          <div class="brand-sub">TERRAN ACCESS NODE // PUBLIC NETWORK</div>
+        </div>
+      </div>
+      <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">EXTRASOLAR CIVIC GATEWAY // LOCAL MIRROR ACTIVE</div>
+      <h1>Terran access permitted.</h1>
+      <p class="lede">This node exposes only services considered non-sensitive under Veydran Imperial information policy. Your species classification has been noted.</p>
+    </section>
+
+    <section class="status panel">
+      <div class="panel-head">
+        <div>
+          <div class="kicker">CURRENT TERRAN FIELD OPERATION</div>
+          <h2>Commander Vrax</h2>
+        </div>
+        <div class="status-badge"><span></span> ACTIVE</div>
+      </div>
+      <div class="status-grid">
+        <div><small>WORLD</small><strong>EARTH</strong></div>
+        <div><small>STATUS</small><strong>INVESTIGATION ACTIVE</strong></div>
+        <div><small>MISSION</small><strong>CULTURAL + NUTRITIONAL RECONNAISSANCE</strong></div>
+        <div><small>LOCAL THREAT INDEX</small><strong>INCONCLUSIVE</strong></div>
+      </div>
+    </section>
+
+    <section class="directory">
+      <article class="service live">
+        <div class="service-code">01 // COMMUNICATIONS</div>
+        <h3>Vmail</h3>
+        <p>Secure Veydran communications terminal.</p>
+        <a href="https://vmail.veydran.space/">OPEN SERVICE</a>
+      </article>
+
+      <article class="service" data-denied="IMPERIAL RECORDS ACCESS DENIED // TERRAN CLEARANCE INSUFFICIENT.">
+        <div class="service-code">02 // ARCHIVES</div>
+        <h3>Imperial Records</h3>
+        <p>Personnel, planetary and operational archive.</p>
+        <button type="button">REQUEST ACCESS</button>
+      </article>
+
+      <article class="service" data-denied="PLANETARY ASSESSMENT // EARTH // INVESTIGATION ACTIVE // FINAL CLASSIFICATION WITHHELD.">
+        <div class="service-code">03 // ASSESSMENT</div>
+        <h3>Planetary Assessment</h3>
+        <p>Current Veydran analysis of Terran civilisation.</p>
+        <button type="button">VIEW ASSESSMENT</button>
+      </article>
+
+      <article class="service" data-denied="COMMAND NETWORK CLASSIFIED // QUERY LOGGED // PLEASE REMAIN WHERE YOU ARE.">
+        <div class="service-code">04 // COMMAND</div>
+        <h3>Command Network</h3>
+        <p>Operational command and classified strategic systems.</p>
+        <button type="button">CONNECT</button>
+      </article>
+    </section>
+
+    <section class="ad-section panel">
+      <div class="panel-head">
+        <div>
+          <div class="kicker">PUBLIC NETWORK SPONSORSHIP FEED</div>
+          <h2>Commercial transmissions</h2>
+        </div>
+        <div class="ad-label">AUTO-TARGETED // SPECIES PROFILE</div>
+      </div>
+
+      <div class="ad-grid">
+        <article class="ad-card hot">
+          <div class="ad-tag">SPONSORED // SOCIAL</div>
+          <h3>HOT GARGAZIAN SINGLES IN YOUR SECTOR</h3>
+          <p>Several compatible organisms have allegedly detected your presence.</p>
+          <button type="button" id="singlesAd">VIEW COMPATIBLE ORGANISMS</button>
+        </article>
+
+        <article class="ad-card">
+          <div class="ad-tag">SPONSORED // DOMESTIC</div>
+          <h3>ORBITAL STORAGE RUNNING LOW?</h3>
+          <p>Upgrade to six additional moons of encrypted household capacity.</p>
+          <button type="button" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS.">CHECK ELIGIBILITY</button>
+        </article>
+
+        <article class="ad-card">
+          <div class="ad-tag">SPONSORED // INSURANCE</div>
+          <h3>PROTECT YOUR BROOD POD</h3>
+          <p>Comprehensive accidental plasma, meteor and ceremonial damage cover.</p>
+          <button type="button" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS.">GET QUOTE</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="notice panel">
+      <div class="kicker">PUBLIC ACCESS NOTICE</div>
+      <p>Terran users are reminded that curiosity does not constitute clearance. Repeated attempts to access restricted systems may be interpreted as enthusiasm and reassigned accordingly.</p>
+    </section>
+
+    <footer>
+      <span>VEYDRAN INTERSTELLAR AUTHORITY</span>
+      <span>PUBLIC NODE T-00</span>
+      <span>LOCAL REALITY OFFSET: +1</span>
+    </footer>
+  </main>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal hidden" id="ageModal" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+    <div class="modal-card">
+      <div class="modal-code">VE-Y18 // AGE VERIFICATION</div>
+      <h2 id="ageTitle">ACCESS RESTRICTED</h2>
+      <p class="modal-big">You must be over 200 cycles old to view this site.</p>
+      <p>Terran age documentation is not accepted by the Veydran Interstellar Decency Authority.</p>
+      <div class="modal-actions">
+        <button type="button" id="claimAge">I AM OVER 200</button>
+        <button type="button" id="closeAge">RETURN TO CIVIC NETWORK</button>
+      </div>
+      <div class="modal-fine">False declarations may result in parental notification, civic shame, or reassignment.</div>
+    </div>
+  </div>
+
+  <script>window.setTimeout(()=>document.body.classList.remove('vey-loading'),1500);</script>
+  <script src="gateway.js?v=20261001-2"></script>
+</body>
+</html>
