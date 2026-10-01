@@ -25,44 +25,58 @@
     return [...text].map((char) => glyphMap[char.toUpperCase()] || char).join('');
   }
 
+  // Capture pristine English text once, before any Veydran conversion happens.
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
       const parent = node.parentElement;
-      if (!parent || parent.closest('[data-no-vey="true"]')) return NodeFilter.FILTER_REJECT;
+      if (!parent) return NodeFilter.FILTER_REJECT;
+      if (parent.closest('[data-no-vey="true"]')) return NodeFilter.FILTER_REJECT;
+      if (parent.closest('.ad-translation')) return NodeFilter.FILTER_REJECT;
       if (['SCRIPT','STYLE'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT;
     }
   });
 
   let node;
-  while ((node = walker.nextNode())) textNodes.push({ node, english: node.nodeValue });
+  while ((node = walker.nextNode())) {
+    textNodes.push({ node, english: node.nodeValue });
+  }
 
   function localise(text) {
     return language === 'vey' ? toVeydran(text) : text;
   }
 
   function applyDynamicLanguage(el) {
-    if (el && el.dataset.englishMessage) el.textContent = localise(el.dataset.englishMessage);
+    if (el && el.dataset.englishMessage) {
+      el.textContent = localise(el.dataset.englishMessage);
+    }
   }
 
   function setAdvertArtworkLanguage() {
     advertImages.forEach((img) => {
-      const target = language === 'vey'
-        ? img.dataset.veySrc
-        : (img.dataset.enSrc || img.dataset.veySrc);
-      if (target && img.getAttribute('src') !== target) img.setAttribute('src', target);
+      const target = language === 'en'
+        ? (img.dataset.enSrc || img.dataset.veySrc)
+        : img.dataset.veySrc;
+      if (target && img.getAttribute('src') !== target) {
+        img.setAttribute('src', target);
+      }
     });
   }
 
   function applyLanguage() {
     const vey = language === 'vey';
-    textNodes.forEach(({node, english}) => {
+
+    // Always regenerate from the pristine English snapshot. Never translate already-translated text.
+    textNodes.forEach(({ node, english }) => {
       node.nodeValue = vey ? toVeydran(english) : english;
     });
-    languageToggle.textContent = vey ? 'ENGLISH' : 'VEYDRAN';
+
     document.documentElement.lang = vey ? 'x-vey' : 'en';
+    document.body.dataset.lang = vey ? 'vey' : 'en';
+    languageToggle.textContent = vey ? 'ENGLISH' : 'VEYDRAN';
     document.title = vey ? toVeydran('Veydran Interstellar Authority') : 'Veydran Interstellar Authority';
+
     setAdvertArtworkLanguage();
     [toast, noticeCode, noticeTitle, noticeMessage].forEach(applyDynamicLanguage);
   }
