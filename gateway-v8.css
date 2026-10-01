@@ -1,0 +1,37 @@
+@import url("gateway-v7.css?v=20261001-8");
+
+/* Civic workforce campaign: deliberately polished corporate propaganda. */
+.synergy{overflow:hidden}
+.synergy-head{align-items:center}
+.synergy-status{font-size:10px;letter-spacing:1.5px;color:#9dfbd6;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.synergy-status span{width:7px;height:7px;border-radius:50%;background:#65ffc0;box-shadow:0 0 14px #65ffc0}
+.synergy-banner{position:relative;margin-top:22px;overflow:hidden;border:1px solid rgba(57,214,255,.28);background:#03111b;box-shadow:0 22px 55px rgba(0,0,0,.34)}
+.synergy-banner>img{display:block;width:100%;aspect-ratio:1536/670;object-fit:cover;object-position:center}
+.synergy-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,8,14,.90) 0%,rgba(1,8,14,.65) 34%,rgba(1,8,14,.12) 69%,rgba(1,8,14,.18) 100%),linear-gradient(0deg,rgba(1,8,14,.82) 0%,transparent 48%);pointer-events:none}
+.synergy-copy{position:absolute;left:30px;bottom:28px;width:min(610px,66%);z-index:2}
+.synergy-eyebrow{font-size:10px;letter-spacing:2.2px;color:#65ffc0;margin-bottom:8px}
+.synergy-copy h3{font-size:clamp(28px,4.5vw,54px);line-height:.98;letter-spacing:-1.5px;margin:0 0 10px;color:#effcff;text-shadow:0 2px 25px rgba(0,0,0,.75)}
+.synergy-copy p{max-width:590px;color:#b7d4df;line-height:1.55;font-size:13px;margin:0 0 16px;text-shadow:0 1px 12px rgba(0,0,0,.8)}
+.synergy-pills{display:flex;flex-wrap:wrap;gap:7px}
+.synergy-pills span{border:1px solid rgba(57,214,255,.32);background:rgba(3,23,34,.78);padding:7px 9px;font-size:8px;font-weight:800;letter-spacing:1.15px;color:#c9f3ff;backdrop-filter:blur(4px)}
+.synergy-file{position:absolute;right:15px;top:13px;z-index:2;font-size:8px;letter-spacing:1.35px;color:rgba(202,241,255,.72);background:rgba(2,12,19,.67);border:1px solid rgba(57,214,255,.18);padding:6px 8px;backdrop-filter:blur(4px)}
+
+/* Make the campaign read as part of the authority portal, not another advert. */
+.synergy+.ad-section{margin-top:20px}
+
+@media(max-width:760px){
+  .synergy-head{align-items:flex-start}
+  .synergy-status{margin-top:4px}
+  .synergy-banner>img{aspect-ratio:4/3;object-position:58% center}
+  .synergy-shade{background:linear-gradient(0deg,rgba(1,8,14,.97) 0%,rgba(1,8,14,.76) 47%,rgba(1,8,14,.08) 78%)}
+  .synergy-copy{left:18px;right:18px;bottom:18px;width:auto}
+  .synergy-copy h3{font-size:32px}
+  .synergy-copy p{font-size:12px}
+  .synergy-file{display:none}
+}
+@media(max-width:520px){
+  .synergy-status{display:none}
+  .synergy-banner>img{aspect-ratio:1/1.16;object-position:59% center}
+  .synergy-copy h3{font-size:28px}
+  .synergy-pills span{font-size:7px;padding:6px 7px}
+}
