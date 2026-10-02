@@ -205,6 +205,11 @@ body:before{
 .service-v9 p{font-size:12px;line-height:1.55;color:#7fa3b0;max-width:420px;margin:0 0 18px}
 .service-v9 a,.service-v9 button{
   min-height:37px;padding:0 13px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  text-decoration:none;
   font-size:8px;letter-spacing:1.35px;
   border:1px solid rgba(62,214,250,.35);
   background:rgba(6,45,59,.74);
@@ -271,7 +276,8 @@ body:before{
   display:flex;
   align-items:center;
   isolation:isolate;
-  background-image:url("assets/interspecies-synergy-hq.webp?v=20261002-3");
+  background-color:#03111a;
+  background-image:url("assets/interspecies-synergy-hq.webp?v=20261002-4");
   background-size:cover;
   background-position:center center;
   box-shadow:
@@ -286,12 +292,12 @@ body:before{
   pointer-events:none;
   background:
     linear-gradient(90deg,
-      rgba(1,9,14,.86) 0%,
-      rgba(1,10,16,.76) 22%,
-      rgba(1,11,17,.56) 39%,
-      rgba(1,10,16,.25) 56%,
-      rgba(1,9,14,.08) 76%,
-      rgba(1,9,14,.12) 100%),
+      rgba(1,9,14,.82) 0%,
+      rgba(1,10,16,.70) 22%,
+      rgba(1,11,17,.48) 39%,
+      rgba(1,10,16,.16) 57%,
+      rgba(1,9,14,.035) 76%,
+      rgba(1,9,14,.06) 100%),
     linear-gradient(0deg,
       rgba(1,8,13,.62) 0%,
       rgba(1,8,13,.18) 28%,
