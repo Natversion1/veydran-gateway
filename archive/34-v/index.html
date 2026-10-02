@@ -109,13 +109,53 @@
         toggle.textContent=vey?'ENGLISH':'VEYDRAN';
       }
       toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});
-      document.querySelectorAll('.shot-img').forEach((img)=>{
+      const galleryImages=[...document.querySelectorAll('.shot-img')];
+      galleryImages.forEach((img)=>{
         img.addEventListener('error',()=>{
           const shot=img.closest('.shot');
           if(shot){shot.classList.add('media-error');shot.setAttribute('data-media-error','MEDIA ASSET FAILED TO LOAD');}
         });
       });
+
+      async function loadHighResolutionArchive(){
+        const parts=[
+          '/assets/34v-hi75/part01.txt?v=75',
+          '/assets/34v-hi75/part02.txt?v=75',
+          '/assets/34v-hi75/part03.txt?v=75',
+          '/assets/34v-hi75/part04a.txt?v=75',
+          '/assets/34v-hi75/part04b.txt?v=75',
+          '/assets/34v-hi75/part04c.txt?v=75',
+          '/assets/34v-hi75/part04d.txt?v=75',
+          '/assets/34v-hi75/part05a.txt?v=75',
+          '/assets/34v-hi75/part05b.txt?v=75',
+          '/assets/34v-hi75/part05c.txt?v=75'
+        ];
+        try{
+          const responses=await Promise.all(parts.map((url)=>fetch(url,{cache:'force-cache'})));
+          if(responses.some((response)=>!response.ok)) throw new Error('Archive media chunk unavailable');
+          const chunks=await Promise.all(responses.map((response)=>response.text()));
+          const base64=chunks.map((chunk)=>chunk.trim()).join('');
+          if(base64.length!==95016 || !base64.startsWith('UklG')) throw new Error('Archive media integrity check failed');
+
+          const hi=new Image();
+          hi.onload=()=>{
+            galleryImages.forEach((img)=>{
+              img.src=hi.src;
+              img.classList.add('hi-res-ready');
+              const shot=img.closest('.shot');
+              if(shot){shot.classList.remove('media-error');shot.removeAttribute('data-media-error');}
+            });
+            document.body.dataset.archiveMedia='high-resolution';
+          };
+          hi.onerror=()=>{ console.warn('Archive 34-V high-resolution media failed to decode; retaining fallback.'); };
+          hi.src='data:image/webp;base64,'+base64;
+        }catch(error){
+          console.warn('Archive 34-V high-resolution media unavailable; retaining fallback.',error);
+        }
+      }
+
       apply();
+      loadHighResolutionArchive();
     })();
   </script>
 </body>
