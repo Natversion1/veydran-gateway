@@ -70,7 +70,7 @@
       <div><small>OPERATIONAL VALUE</small><strong>NONE IDENTIFIED</strong></div>
     </section>
 
-    <section class="gallery" aria-label="Archive 34-V media">
+    <section class="gallery" aria-label="Archive 34-V media" data-media-layout="four-distinct-frames">
       <article class="shot"><img class="shot-img" src="/assets/34v-frame-01.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync" fetchpriority="high"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
       <article class="shot"><img class="shot-img" src="/assets/34v-frame-02.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
       <article class="shot"><img class="shot-img" src="/assets/34v-frame-03.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
@@ -116,45 +116,7 @@
         });
       });
 
-      async function loadHighResolutionArchive(){
-        const parts=[
-          '/assets/34v-hi75/part01.txt?v=75',
-          '/assets/34v-hi75/part02.txt?v=75',
-          '/assets/34v-hi75/part03.txt?v=75',
-          '/assets/34v-hi75/part04a.txt?v=75',
-          '/assets/34v-hi75/part04b.txt?v=75',
-          '/assets/34v-hi75/part04c.txt?v=75',
-          '/assets/34v-hi75/part04d.txt?v=75',
-          '/assets/34v-hi75/part05a.txt?v=75',
-          '/assets/34v-hi75/part05b.txt?v=75',
-          '/assets/34v-hi75/part05c.txt?v=75'
-        ];
-        try{
-          const responses=await Promise.all(parts.map((url)=>fetch(url,{cache:'force-cache'})));
-          if(responses.some((response)=>!response.ok)) throw new Error('Archive media chunk unavailable');
-          const chunks=await Promise.all(responses.map((response)=>response.text()));
-          const base64=chunks.map((chunk)=>chunk.trim()).join('');
-          if(base64.length!==95016 || !base64.startsWith('UklG')) throw new Error('Archive media integrity check failed');
-
-          const hi=new Image();
-          hi.onload=()=>{
-            galleryImages.forEach((img)=>{
-              img.src=hi.src;
-              img.classList.add('hi-res-ready');
-              const shot=img.closest('.shot');
-              if(shot){shot.classList.remove('media-error');shot.removeAttribute('data-media-error');}
-            });
-            document.body.dataset.archiveMedia='high-resolution';
-          };
-          hi.onerror=()=>{ console.warn('Archive 34-V high-resolution media failed to decode; retaining fallback.'); };
-          hi.src='data:image/webp;base64,'+base64;
-        }catch(error){
-          console.warn('Archive 34-V high-resolution media unavailable; retaining fallback.',error);
-        }
-      }
-
       apply();
-      loadHighResolutionArchive();
     })();
   </script>
 </body>
