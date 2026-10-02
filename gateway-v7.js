@@ -36,7 +36,16 @@
   const open34v = document.getElementById('open34v');
   const dismiss34v = document.getElementById('dismiss34v');
   const advertImages = [...document.querySelectorAll('.artwork-card img[data-vey-src]')];
-  let language = 'vey';
+  function getSharedLanguage() {
+    const match = document.cookie.match(/(?:^|;\s*)vey_lang=(en|vey)(?:;|$)/);
+    return match ? match[1] : 'vey';
+  }
+
+  function setSharedLanguage(value) {
+    document.cookie = 'vey_lang=' + value + '; Domain=veydran.space; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
+  }
+
+  let language = getSharedLanguage();
   const textNodes = [];
 
   function toVeydran(text) {
@@ -186,6 +195,7 @@
 
   languageToggle.addEventListener('click', () => {
     language = language === 'vey' ? 'en' : 'vey';
+    setSharedLanguage(language);
     applyLanguage();
   });
 

@@ -19,7 +19,7 @@
     .shell{width:min(1120px,calc(100% - 32px));margin:auto;padding:28px 0 60px}
     .top{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:0 0 20px;margin-bottom:48px}
     .brand{font-size:12px;font-weight:850;letter-spacing:1.8px}.brand small{display:block;color:#63848e;font-size:8px;letter-spacing:1.6px;margin-top:5px}
-    .status{font-size:8px;letter-spacing:1.5px;color:#ff9bbf;border:1px solid rgba(255,104,159,.22);padding:8px 10px;background:rgba(73,7,31,.18)}
+    .archive-actions{display:flex;align-items:center;gap:10px}.status{font-size:8px;letter-spacing:1.5px;color:#ff9bbf;border:1px solid rgba(255,104,159,.22);padding:8px 10px;background:rgba(73,7,31,.18)}.language-toggle{border:1px solid rgba(89,220,255,.35);background:rgba(4,27,40,.85);color:var(--cyan);padding:8px 10px;font-size:8px;font-weight:850;letter-spacing:1.2px;cursor:pointer}.language-toggle:hover{border-color:var(--cyan)}
     .hero{max-width:850px;margin-bottom:34px}
     .kicker{font-size:8px;letter-spacing:2px;color:var(--cyan);margin-bottom:12px}
     h1{font-size:clamp(50px,8vw,96px);line-height:.9;letter-spacing:-4px;margin:0 0 24px}
@@ -41,14 +41,17 @@
     .admin-note p{margin:0;font-size:10px;line-height:1.55;color:#78949d;max-width:720px}.admin-note strong{color:#cfeef5}
     .back{flex:none;text-decoration:none;color:#eafcff;border:1px solid rgba(86,220,250,.35);background:rgba(7,51,65,.62);padding:11px 14px;font-size:8px;font-weight:850;letter-spacing:1.2px}
     footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:7px;letter-spacing:1.45px;color:#405d65;display:flex;justify-content:space-between;gap:18px}
-    @media(max-width:720px){.gallery{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta div{border-right:0;border-bottom:1px solid var(--line)}.meta div:last-child{border-bottom:0}.admin-note{align-items:flex-start;flex-direction:column}.top{align-items:flex-start}.status{display:none}h1{letter-spacing:-2.5px}}
+    @media(max-width:720px){.gallery{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta div{border-right:0;border-bottom:1px solid var(--line)}.meta div:last-child{border-bottom:0}.admin-note{align-items:flex-start;flex-direction:column}.top{align-items:flex-start}.status{display:none}.archive-actions{margin-left:auto}h1{letter-spacing:-2.5px}}
   </style>
 </head>
 <body>
   <main class="shell">
     <header class="top">
       <div class="brand">VEYDRAN INTERSTELLAR AUTHORITY<small>UNINDEXED MEDIA CACHE // TERRAN MIRROR</small></div>
-      <div class="status">DIRECTORY NOT PRESENT IN PUBLIC RECORDS</div>
+      <div class="archive-actions">
+        <div class="status">DIRECTORY NOT PRESENT IN PUBLIC RECORDS</div>
+        <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
+      </div>
     </header>
 
     <section class="hero">
@@ -82,5 +85,32 @@
 
     <footer><span>VEYDRAN ARCHIVE NODE // 34-V</span><span>TERRAN ACCESS: ACCIDENTALLY SUFFICIENT</span></footer>
   </main>
+  <script>
+    (() => {
+      const glyphMap={A:'∆',B:'β',C:'Ͼ',D:'Ð',E:'Ξ',F:'Ϝ',G:'Ǥ',H:'Ħ',I:'ɪ',J:'ʆ',K:'Ҡ',L:'Ł',M:'Ϻ',N:'И',O:'Θ',P:'Ƥ',Q:'Ҩ',R:'Я',S:'Ϟ',T:'Ŧ',U:'Ս',V:'Ѵ',W:'Ш',X:'Ж',Y:'Ұ',Z:'Ȥ'};
+      const toggle=document.getElementById('languageToggle');
+      const nodes=[];
+      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){
+        if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const parent=node.parentElement;
+        if(!parent || parent.closest('[data-no-vey="true"]') || ['SCRIPT','STYLE'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      let n; while((n=walker.nextNode())) nodes.push({node:n,english:n.nodeValue});
+      const toVey=(text)=>[...text].map(c=>glyphMap[c.toUpperCase()]||c).join('');
+      const readLang=()=>{const m=document.cookie.match(/(?:^|;\s*)vey_lang=(en|vey)(?:;|$)/);return m?m[1]:'vey';};
+      const saveLang=(v)=>{document.cookie='vey_lang='+v+'; Domain=veydran.space; Path=/; Max-Age=31536000; SameSite=Lax; Secure';};
+      let language=readLang();
+      function apply(){
+        const vey=language==='vey';
+        nodes.forEach(({node,english})=>node.nodeValue=vey?toVey(english):english);
+        document.documentElement.lang=vey?'x-vey':'en';
+        document.title=vey?toVey('Archive 34-V // Unindexed'):'Archive 34-V // Unindexed';
+        toggle.textContent=vey?'ENGLISH':'VEYDRAN';
+      }
+      toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});
+      apply();
+    })();
+  </script>
 </body>
 </html>
