@@ -1,10 +1,47 @@
 (() => {
   'use strict';
 
-  const glyphMap = {
-    A:'∆', B:'β', C:'Ͼ', D:'Ð', E:'Ξ', F:'Ϝ', G:'Ǥ', H:'Ħ', I:'ɪ', J:'ʆ', K:'Ҡ', L:'Ł', M:'Ϻ',
-    N:'И', O:'Θ', P:'Ƥ', Q:'Ҩ', R:'Я', S:'Ϟ', T:'Ŧ', U:'Ս', V:'Ѵ', W:'Ш', X:'Ж', Y:'Ұ', Z:'Ȥ'
-  };
+  const veyGlyphs = [
+    '⌁','⟊','⌬','⟟','⟁','⊘','⊚','⌖','⟡','⊹','⧖','⧗','⟠','⍜',
+    '⍟','⧈','⟐','⟢','⧇','⊞','⊡','⎔','⨳','⋮','⌗','⍉','⍖','⍗'
+  ];
+  const veyClusters = [
+    'TION','MENT','ING','TH','SH','CH','PH','QU','ER','AN','AR','EN','IN','ON',
+    'OR','ST','NT','RA','RE','VE','DR','TR','LL','SS','EE','OO'
+  ];
+
+  function veyHash(value) {
+    let hash = 2166136261;
+    for (let i = 0; i < value.length; i += 1) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function encodeVeyWord(word) {
+    const source = word.toUpperCase();
+    const glyphs = [];
+    let cursor = 0;
+
+    while (cursor < source.length) {
+      let chunk = veyClusters.find((cluster) => source.startsWith(cluster, cursor));
+
+      if (!chunk) {
+        const remaining = source.length - cursor;
+        const width = remaining >= 3 && (veyHash(source + '|' + cursor) % 3 === 0)
+          ? 3
+          : Math.min(2, remaining);
+        chunk = source.slice(cursor, cursor + width);
+      }
+
+      const glyph = veyGlyphs[veyHash(chunk + '|' + cursor + '|' + source.length) % veyGlyphs.length];
+      glyphs.push(glyph);
+      cursor += chunk.length;
+    }
+
+    return glyphs.join('');
+  }
 
   const languageToggle = document.getElementById('languageToggle');
   const toast = document.getElementById('toast');
@@ -14,6 +51,7 @@
   const noticeTitle = document.getElementById('noticeTitle');
   const noticeMessage = document.getElementById('noticeMessage');
   const closeNotice = document.getElementById('closeNotice');
+  const noticePremium = document.getElementById('noticePremium');
   const singlesAd = document.getElementById('singlesAd');
   const commandConnect = document.getElementById('commandConnect');
   const commandModal = document.getElementById('commandModal');
@@ -49,7 +87,17 @@
   const textNodes = [];
 
   function toVeydran(text) {
-    return [...text].map((char) => glyphMap[char.toUpperCase()] || char).join('');
+    const leading = (text.match(/^\s*/) || [''])[0];
+    const trailing = (text.match(/\s*$/) || [''])[0];
+    const core = text.trim();
+    if (!core) return text;
+
+    const encoded = core.replace(/[A-Za-z]+|[^A-Za-z]+/g, (token) => {
+      if (/^[A-Za-z]+$/.test(token)) return encodeVeyWord(token);
+      return token.replace(/\s+/g, ' · ');
+    });
+
+    return leading + encoded + trailing;
   }
 
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
@@ -177,6 +225,7 @@
   if (dismiss34v) dismiss34v.addEventListener('click', closeDiscoveryModal);
 
   function showNotice(title, message, code = 'VEYDRAN NETWORK // REQUEST RESPONSE') {
+    if (noticePremium) noticePremium.classList.add('hidden');
     noticeCode.dataset.englishMessage = code;
     noticeTitle.dataset.englishMessage = title;
     noticeMessage.dataset.englishMessage = message;
@@ -189,6 +238,7 @@
   }
 
   function closeNoticeModal() { noticeModal.classList.add('hidden'); unlockScroll(); }
+  if (noticePremium) noticePremium.addEventListener('click', () => { window.location.href = '/only-organisms/'; });
 
   languageToggle.addEventListener('click', () => {
     language = language === 'vey' ? 'en' : 'vey';
@@ -318,6 +368,7 @@
     claimAge.addEventListener('click', () => {
       closeAgeGate();
       showNotice('AGE CLAIM REJECTED', 'ESTIMATED TERRAN LIFESPAN IS BELOW VEYDRAN ADULT THRESHOLD. NICE TRY.', 'VEYDRAN DECENCY AUTHORITY // AUTOMATED AGE ESTIMATE');
+      if (noticePremium) noticePremium.classList.remove('hidden');
     });
   }
 

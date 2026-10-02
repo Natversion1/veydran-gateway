@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="x-vey">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,6 +12,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%;background:#030609;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     body{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,rgba(36,161,201,.08),transparent 35%),linear-gradient(#020507,#06090c)}
+    .language-toggle{position:fixed;right:18px;top:18px;border:1px solid rgba(89,220,255,.35);background:#06202a;color:var(--cyan);padding:9px 12px;font:800 9px/1 system-ui;letter-spacing:1.2px;cursor:pointer}
     .panel{width:min(680px,calc(100% - 32px));border:1px solid var(--line);background:rgba(5,17,23,.9);padding:32px}
     .code{font-size:9px;letter-spacing:2px;color:var(--cyan);margin-bottom:14px}
     h1{margin:0 0 16px;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-2px}
@@ -22,6 +23,7 @@
   </style>
 </head>
 <body>
+  <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
   <main class="panel">
     <div class="code">VEYDRAN PUBLIC DIRECTORY // ROUTE RESPONSE</div>
     <h1>Directory unavailable.</h1>
@@ -29,5 +31,24 @@
     <a href="/">RETURN TO PUBLIC NODE</a>
     <div class="fine">TERRAN ACCESS // NO FURTHER INFORMATION AVAILABLE</div>
   </main>
+  <script>
+  (()=>{
+    const veyGlyphs=['⌁','⟊','⌬','⟟','⟁','⊘','⊚','⌖','⟡','⊹','⧖','⧗','⟠','⍜','⍟','⧈','⟐','⟢','⧇','⊞','⊡','⎔','⨳','⋮','⌗','⍉','⍖','⍗'];
+    const veyClusters=['TION','MENT','ING','TH','SH','CH','PH','QU','ER','AN','AR','EN','IN','ON','OR','ST','NT','RA','RE','VE','DR','TR','LL','SS','EE','OO'];
+    function veyHash(value){let hash=2166136261;for(let i=0;i<value.length;i+=1){hash^=value.charCodeAt(i);hash=Math.imul(hash,16777619);}return hash>>>0;}
+    function encodeVeyWord(word){const source=word.toUpperCase();const glyphs=[];let cursor=0;while(cursor<source.length){let chunk=veyClusters.find((cluster)=>source.startsWith(cluster,cursor));if(!chunk){const remaining=source.length-cursor;const width=remaining>=3&&(veyHash(source+'|'+cursor)%3===0)?3:Math.min(2,remaining);chunk=source.slice(cursor,cursor+width);}glyphs.push(veyGlyphs[veyHash(chunk+'|'+cursor+'|'+source.length)%veyGlyphs.length]);cursor+=chunk.length;}return glyphs.join('');}
+    function toVeydran(text){const leading=(text.match(/^\s*/)||[''])[0];const trailing=(text.match(/\s*$/)||[''])[0];const core=text.trim();if(!core)return text;const encoded=core.replace(/[A-Za-z]+|[^A-Za-z]+/g,(token)=>/^[A-Za-z]+$/.test(token)?encodeVeyWord(token):token.replace(/\s+/g,' · '));return leading+encoded+trailing;}
+
+    const toggle=document.getElementById('languageToggle');
+    const nodes=[];
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;const parent=node.parentElement;if(!parent||parent.closest('[data-no-vey="true"]')||['SCRIPT','STYLE'].includes(parent.tagName))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
+    let node;while((node=walker.nextNode()))nodes.push({node,english:node.nodeValue});
+    function readLang(){const m=document.cookie.match(/(?:^|;\s*)vey_lang=(en|vey)(?:;|$)/);return m?m[1]:'vey';}
+    function saveLang(value){document.cookie='vey_lang='+value+'; Domain=veydran.space; Path=/; Max-Age=31536000; SameSite=Lax; Secure';}
+    let language=readLang();
+    function apply(){const vey=language==='vey';nodes.forEach(({node,english})=>node.nodeValue=vey?toVeydran(english):english);document.documentElement.lang=vey?'x-vey':'en';document.title=vey?toVeydran('Directory unavailable // Veydran Interstellar Authority'):'Directory unavailable // Veydran Interstellar Authority';toggle.textContent=vey?'ENGLISH':'VEYDRAN';}
+    toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});apply();
+  })();
+  </script>
 </body>
 </html>
