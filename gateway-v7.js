@@ -108,7 +108,7 @@
 
 
   const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
-  const archive34vProgressKey = 'vey_34v_progress_v1';
+  const archive34vProgressKey = 'vey_34v_progress_v2';
   let archive34vRevealTimer = null;
 
   function read34vProgress() {
@@ -339,6 +339,5 @@
   console.log('Terran inspection detected. Curiosity has been added to your species profile.');
 
   applyLanguage();
-  maybeReveal34v(1400);
   document.body.classList.remove('vey-loading');
 })();
