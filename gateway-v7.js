@@ -51,7 +51,6 @@
   const noticeTitle = document.getElementById('noticeTitle');
   const noticeMessage = document.getElementById('noticeMessage');
   const closeNotice = document.getElementById('closeNotice');
-  const noticePremium = document.getElementById('noticePremium');
   const singlesAd = document.getElementById('singlesAd');
   const commandConnect = document.getElementById('commandConnect');
   const commandModal = document.getElementById('commandModal');
@@ -156,6 +155,7 @@
 
 
   const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
+  // FUTURE FACE-REVEAL EASTER EGG: keep the original full-site puzzle dormant until launch.
   const archive34vEnabled = false;
   const archive34vProgressKey = 'vey_34v_progress_v2';
   let archive34vRevealTimer = null;
@@ -225,7 +225,6 @@
   if (dismiss34v) dismiss34v.addEventListener('click', closeDiscoveryModal);
 
   function showNotice(title, message, code = 'VEYDRAN NETWORK // REQUEST RESPONSE') {
-    if (noticePremium) noticePremium.classList.add('hidden');
     noticeCode.dataset.englishMessage = code;
     noticeTitle.dataset.englishMessage = title;
     noticeMessage.dataset.englishMessage = message;
@@ -238,7 +237,6 @@
   }
 
   function closeNoticeModal() { noticeModal.classList.add('hidden'); unlockScroll(); }
-  if (noticePremium) noticePremium.addEventListener('click', () => { window.location.href = '/only-organisms/'; });
 
   languageToggle.addEventListener('click', () => {
     language = language === 'vey' ? 'en' : 'vey';
@@ -368,7 +366,6 @@
     claimAge.addEventListener('click', () => {
       closeAgeGate();
       showNotice('AGE CLAIM REJECTED', 'ESTIMATED TERRAN LIFESPAN IS BELOW VEYDRAN ADULT THRESHOLD. NICE TRY.', 'VEYDRAN DECENCY AUTHORITY // AUTOMATED AGE ESTIMATE');
-      if (noticePremium) noticePremium.classList.remove('hidden');
     });
   }
 
