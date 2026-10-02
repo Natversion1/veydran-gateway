@@ -32,6 +32,9 @@
   const closeCommand = document.getElementById('closeCommand');
   const closeAge = document.getElementById('closeAge');
   const claimAge = document.getElementById('claimAge');
+  const discoveryModal = document.getElementById('discoveryModal');
+  const open34v = document.getElementById('open34v');
+  const dismiss34v = document.getElementById('dismiss34v');
   const advertImages = [...document.querySelectorAll('.artwork-card img[data-vey-src]')];
   let language = 'vey';
   const textNodes = [];
@@ -89,9 +92,83 @@
     if (
       ageModal.classList.contains('hidden') &&
       noticeModal.classList.contains('hidden') &&
-      commandModal.classList.contains('hidden')
+      commandModal.classList.contains('hidden') &&
+      discoveryModal.classList.contains('hidden')
     ) document.body.style.overflow = '';
   }
+
+
+  const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
+  const archive34vProgressKey = 'vey_34v_progress_v1';
+  const archive34vFoundKey = 'vey_34v_found_v1';
+  let archive34vRevealTimer = null;
+
+  function read34vProgress() {
+    try {
+      const raw = window.localStorage.getItem(archive34vProgressKey);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(parsed) ? parsed : []);
+    } catch (_) {
+      return new Set();
+    }
+  }
+
+  function write34vProgress(progress) {
+    try { window.localStorage.setItem(archive34vProgressKey, JSON.stringify([...progress])); } catch (_) {}
+  }
+
+  function hasFound34v() {
+    try { return window.localStorage.getItem(archive34vFoundKey) === '1'; } catch (_) { return false; }
+  }
+
+  function mark34vFound() {
+    try { window.localStorage.setItem(archive34vFoundKey, '1'); } catch (_) {}
+  }
+
+  function all34vControlsVisited() {
+    const progress = read34vProgress();
+    return archive34vControls.every((id) => progress.has(id));
+  }
+
+  function otherOverlayOpen() {
+    return [ageModal, noticeModal, commandModal].some((modal) => modal && !modal.classList.contains('hidden'));
+  }
+
+  function maybeReveal34v(delay = 1100) {
+    window.clearTimeout(archive34vRevealTimer);
+    if (!discoveryModal || hasFound34v() || !all34vControlsVisited()) return;
+    archive34vRevealTimer = window.setTimeout(() => {
+      if (hasFound34v()) return;
+      if (otherOverlayOpen()) {
+        maybeReveal34v(650);
+        return;
+      }
+      mark34vFound();
+      discoveryModal.classList.remove('hidden');
+      lockScroll();
+    }, delay);
+  }
+
+  function mark34vControl(id) {
+    if (!id) return;
+    const progress = read34vProgress();
+    progress.add(id);
+    write34vProgress(progress);
+    maybeReveal34v();
+  }
+
+  document.querySelectorAll('[data-34v-id]').forEach((control) => {
+    control.addEventListener('click', () => mark34vControl(control.getAttribute('data-34v-id')));
+  });
+
+  function closeDiscoveryModal() {
+    if (!discoveryModal) return;
+    discoveryModal.classList.add('hidden');
+    unlockScroll();
+  }
+
+  if (open34v) open34v.addEventListener('click', () => { window.location.href = '/archive/34-v/'; });
+  if (dismiss34v) dismiss34v.addEventListener('click', closeDiscoveryModal);
 
   function showNotice(title, message, code = 'VEYDRAN NETWORK // REQUEST RESPONSE') {
     noticeCode.dataset.englishMessage = code;
@@ -237,19 +314,21 @@
     });
   }
 
-  [ageModal, noticeModal, commandModal].forEach((modal) => {
+  [ageModal, noticeModal, commandModal, discoveryModal].forEach((modal) => {
     if (!modal) return;
     modal.addEventListener('click', (event) => {
       if (event.target !== modal) return;
       if (modal === ageModal) closeAgeGate();
       if (modal === noticeModal) closeNoticeModal();
       if (modal === commandModal) closeCommandModal();
+      if (modal === discoveryModal) closeDiscoveryModal();
     });
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-    if (!commandModal.classList.contains('hidden')) closeCommandModal();
+    if (!discoveryModal.classList.contains('hidden')) closeDiscoveryModal();
+    else if (!commandModal.classList.contains('hidden')) closeCommandModal();
     else if (!noticeModal.classList.contains('hidden')) closeNoticeModal();
     else if (!ageModal.classList.contains('hidden')) closeAgeGate();
   });
@@ -258,5 +337,6 @@
   console.log('Terran inspection detected. Curiosity has been added to your species profile.');
 
   applyLanguage();
+  maybeReveal34v(1400);
   document.body.classList.remove('vey-loading');
 })();
