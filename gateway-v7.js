@@ -15,6 +15,21 @@
   const noticeMessage = document.getElementById('noticeMessage');
   const closeNotice = document.getElementById('closeNotice');
   const singlesAd = document.getElementById('singlesAd');
+  const commandConnect = document.getElementById('commandConnect');
+  const commandModal = document.getElementById('commandModal');
+  const commandModalCode = document.getElementById('commandModalCode');
+  const commandModalTitle = document.getElementById('commandModalTitle');
+  const commandLinkVisual = document.getElementById('commandLinkVisual');
+  const commandRoute = document.getElementById('commandRoute');
+  const commandRelay = document.getElementById('commandRelay');
+  const commandHandshake = document.getElementById('commandHandshake');
+  const commandClearance = document.getElementById('commandClearance');
+  const commandProgressBar = document.getElementById('commandProgressBar');
+  const commandStatus = document.getElementById('commandStatus');
+  const commandPercent = document.getElementById('commandPercent');
+  const commandFailure = document.getElementById('commandFailure');
+  const commandActions = document.getElementById('commandActions');
+  const closeCommand = document.getElementById('closeCommand');
   const closeAge = document.getElementById('closeAge');
   const claimAge = document.getElementById('claimAge');
   const advertImages = [...document.querySelectorAll('.artwork-card img[data-vey-src]')];
@@ -70,7 +85,13 @@
   }
 
   function lockScroll() { document.body.style.overflow = 'hidden'; }
-  function unlockScroll() { if (ageModal.classList.contains('hidden') && noticeModal.classList.contains('hidden')) document.body.style.overflow = ''; }
+  function unlockScroll() {
+    if (
+      ageModal.classList.contains('hidden') &&
+      noticeModal.classList.contains('hidden') &&
+      commandModal.classList.contains('hidden')
+    ) document.body.style.overflow = '';
+  }
 
   function showNotice(title, message, code = 'VEYDRAN NETWORK // REQUEST RESPONSE') {
     noticeCode.dataset.englishMessage = code;
@@ -92,11 +113,101 @@
   });
 
   document.querySelectorAll('.service[data-denied] button').forEach((button) => {
+    if (button.id === 'commandConnect') return;
     button.addEventListener('click', () => {
       const service = button.closest('.service');
       showNotice(service.dataset.deniedTitle || 'ACCESS DENIED', service.dataset.denied, 'VEYDRAN SECURITY // CLEARANCE FAILURE');
     });
   });
+
+  const commandTimers = [];
+  function clearCommandTimers() {
+    while (commandTimers.length) window.clearTimeout(commandTimers.pop());
+  }
+
+  function commandSet(el, english) {
+    if (el) el.textContent = localise(english);
+  }
+
+  function commandLater(delay, fn) {
+    commandTimers.push(window.setTimeout(fn, delay));
+  }
+
+  function resetCommandSequence() {
+    clearCommandTimers();
+    commandModal.classList.remove('failed');
+    commandLinkVisual.classList.remove('failed');
+    commandFailure.classList.add('hidden');
+    commandActions.classList.add('hidden');
+
+    commandSet(commandModalCode, 'COMMAND NETWORK // SECURE UPLINK');
+    commandSet(commandModalTitle, 'ESTABLISHING CONNECTION');
+    commandSet(commandRoute, 'INITIALISING');
+    commandSet(commandRelay, 'SEARCHING');
+    commandSet(commandHandshake, 'PENDING');
+    commandSet(commandClearance, 'PENDING');
+    commandSet(commandStatus, 'INITIALISING SECURE COMMAND ROUTE');
+    commandPercent.textContent = '08%';
+    commandProgressBar.style.width = '8%';
+  }
+
+  function startCommandSequence() {
+    resetCommandSequence();
+    commandModal.classList.remove('hidden');
+    lockScroll();
+
+    commandLater(550, () => {
+      commandSet(commandRoute, 'ACCEPTED');
+      commandSet(commandRelay, 'NODE SEARCH');
+      commandSet(commandStatus, 'LOCATING NEAREST IMPERIAL RELAY');
+      commandPercent.textContent = '31%';
+      commandProgressBar.style.width = '31%';
+    });
+
+    commandLater(1150, () => {
+      commandSet(commandRelay, 'RELAY 7-K FOUND');
+      commandSet(commandHandshake, 'NEGOTIATING');
+      commandSet(commandStatus, 'NEGOTIATING CRYPTOGRAPHIC HANDSHAKE');
+      commandPercent.textContent = '57%';
+      commandProgressBar.style.width = '57%';
+    });
+
+    commandLater(1750, () => {
+      commandSet(commandHandshake, 'ACCEPTED');
+      commandSet(commandClearance, 'VERIFYING');
+      commandSet(commandStatus, 'VERIFYING OPERATOR CLEARANCE');
+      commandPercent.textContent = '82%';
+      commandProgressBar.style.width = '82%';
+    });
+
+    commandLater(2350, () => {
+      commandSet(commandStatus, 'SPECIES PROFILE RECEIVED');
+      commandPercent.textContent = '97%';
+      commandProgressBar.style.width = '97%';
+    });
+
+    commandLater(2850, () => {
+      commandModal.classList.add('failed');
+      commandLinkVisual.classList.add('failed');
+      commandSet(commandModalCode, 'COMMAND SECURITY // CONNECTION RESPONSE');
+      commandSet(commandModalTitle, 'ACCESS FAILURE');
+      commandSet(commandClearance, 'DENIED // TERRAN');
+      commandSet(commandStatus, 'CONNECTION TERMINATED');
+      commandPercent.textContent = '00%';
+      commandProgressBar.style.width = '100%';
+      commandFailure.classList.remove('hidden');
+      commandActions.classList.remove('hidden');
+    });
+  }
+
+  function closeCommandModal() {
+    clearCommandTimers();
+    commandModal.classList.add('hidden');
+    unlockScroll();
+  }
+
+  if (commandConnect) commandConnect.addEventListener('click', startCommandSequence);
+  if (closeCommand) closeCommand.addEventListener('click', closeCommandModal);
 
   document.querySelectorAll('[data-ad-message]').forEach((button) => {
     button.addEventListener('click', () => {
@@ -126,18 +237,20 @@
     });
   }
 
-  [ageModal, noticeModal].forEach((modal) => {
+  [ageModal, noticeModal, commandModal].forEach((modal) => {
     if (!modal) return;
     modal.addEventListener('click', (event) => {
       if (event.target !== modal) return;
       if (modal === ageModal) closeAgeGate();
       if (modal === noticeModal) closeNoticeModal();
+      if (modal === commandModal) closeCommandModal();
     });
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-    if (!noticeModal.classList.contains('hidden')) closeNoticeModal();
+    if (!commandModal.classList.contains('hidden')) closeCommandModal();
+    else if (!noticeModal.classList.contains('hidden')) closeNoticeModal();
     else if (!ageModal.classList.contains('hidden')) closeAgeGate();
   });
 
