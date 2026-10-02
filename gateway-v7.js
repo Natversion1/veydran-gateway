@@ -108,6 +108,7 @@
 
 
   const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
+  const archive34vEnabled = false;
   const archive34vProgressKey = 'vey_34v_progress_v2';
   let archive34vRevealTimer = null;
 
@@ -151,6 +152,7 @@
   }
 
   function mark34vControl(id) {
+    if (!archive34vEnabled) return;
     if (!id) return;
     const progress = read34vProgress();
     progress.add(id);
@@ -168,7 +170,10 @@
     unlockScroll();
   }
 
-  if (open34v) open34v.addEventListener('click', () => { window.location.href = '/archive/34-v/'; });
+  if (open34v) open34v.addEventListener('click', () => {
+    if (archive34vEnabled) window.location.href = '/archive/34-v/';
+    else closeDiscoveryModal();
+  });
   if (dismiss34v) dismiss34v.addEventListener('click', closeDiscoveryModal);
 
   function showNotice(title, message, code = 'VEYDRAN NETWORK // REQUEST RESPONSE') {
