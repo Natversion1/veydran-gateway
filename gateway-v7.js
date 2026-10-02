@@ -109,7 +109,6 @@
 
   const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
   const archive34vProgressKey = 'vey_34v_progress_v1';
-  const archive34vFoundKey = 'vey_34v_found_v1';
   let archive34vRevealTimer = null;
 
   function read34vProgress() {
@@ -126,14 +125,6 @@
     try { window.localStorage.setItem(archive34vProgressKey, JSON.stringify([...progress])); } catch (_) {}
   }
 
-  function hasFound34v() {
-    try { return window.localStorage.getItem(archive34vFoundKey) === '1'; } catch (_) { return false; }
-  }
-
-  function mark34vFound() {
-    try { window.localStorage.setItem(archive34vFoundKey, '1'); } catch (_) {}
-  }
-
   function all34vControlsVisited() {
     const progress = read34vProgress();
     return archive34vControls.every((id) => progress.has(id));
@@ -145,14 +136,15 @@
 
   function maybeReveal34v(delay = 1100) {
     window.clearTimeout(archive34vRevealTimer);
-    if (!discoveryModal || hasFound34v() || !all34vControlsVisited()) return;
+    if (!discoveryModal || !all34vControlsVisited()) return;
     archive34vRevealTimer = window.setTimeout(() => {
-      if (hasFound34v()) return;
       if (otherOverlayOpen()) {
         maybeReveal34v(650);
         return;
       }
-      mark34vFound();
+      // Completing the full set unlocks 34-V. Reset progress so the easter egg
+      // can be rediscovered later instead of being permanently suppressed.
+      try { window.localStorage.removeItem(archive34vProgressKey); } catch (_) {}
       discoveryModal.classList.remove('hidden');
       lockScroll();
     }, delay);
