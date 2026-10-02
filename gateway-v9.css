@@ -276,19 +276,27 @@ body:before{
   display:flex;
   align-items:center;
   isolation:isolate;
-  background-color:#03111a;
-  background-image:url("assets/interspecies-synergy-hq.webp?v=20261002-4");
-  background-size:cover;
-  background-position:center center;
+  background:#03111a;
   box-shadow:
     0 30px 80px rgba(0,0,0,.34),
     inset 0 0 90px rgba(18,145,190,.035);
+}
+.synergy-bg-v9{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+  filter:saturate(.96) contrast(1.02);
 }
 .synergy-v9:before{
   content:"";
   position:absolute;
   inset:0;
-  z-index:0;
+  z-index:1;
   pointer-events:none;
   background:
     linear-gradient(90deg,
@@ -466,7 +474,8 @@ footer span{color:#456d79}
 @media(max-width:920px){
   .hero-v9{grid-template-columns:1fr;gap:25px;padding:54px 0 38px}
   .access-profile{min-height:0}
-  .synergy-v9{min-height:560px;background-position:56% center}
+  .synergy-v9{min-height:560px}
+  .synergy-bg-v9{object-position:56% center}
   .synergy-copy-v9{width:min(610px,68%);margin-left:32px;padding:34px 0}
   .bulletin-list{grid-template-columns:1fr}
   .bulletin{border-right:0;border-bottom:1px solid rgba(66,203,239,.12);min-height:0}
@@ -515,8 +524,8 @@ footer span{color:#456d79}
   .synergy-v9{
     min-height:620px;
     align-items:flex-end;
-    background-position:58% center;
   }
+  .synergy-bg-v9{object-position:58% center}
   .synergy-v9:before{
     background:
       linear-gradient(0deg,rgba(1,9,15,.96) 0%,rgba(1,10,16,.80) 39%,rgba(1,9,15,.24) 70%,rgba(1,9,15,.10) 100%);
