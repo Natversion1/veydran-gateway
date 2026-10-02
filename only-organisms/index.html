@@ -25,9 +25,13 @@
     .body{position:absolute;width:270px;height:285px;background:#050405;left:50%;top:185px;transform:translateX(-50%);border-radius:48% 48% 12% 12%}
     .redact{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(5,3,6,.88);border:1px solid rgba(255,108,181,.18);padding:14px}
     .redact small{display:block;color:var(--pink);font-size:7px;letter-spacing:1.5px;margin-bottom:5px}.redact strong{font-size:14px}.redact p{font-size:9px;color:#927486;margin:6px 0 0}
-    .locked{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 34px}.tile{aspect-ratio:1/1.1;border:1px solid var(--line);background:radial-gradient(circle at 50% 35%,rgba(255,74,159,.12),transparent 24%),linear-gradient(145deg,#140914,#040304);position:relative;overflow:hidden}
-    .tile:before{content:"";position:absolute;width:70px;height:58px;border-radius:50%;background:#020202;left:50%;top:24%;transform:translateX(-50%);box-shadow:0 55px 0 24px #020202;filter:blur(4px)}
-    .tile span{position:absolute;z-index:2;left:10px;right:10px;bottom:10px;font-size:7px;letter-spacing:1.2px;color:#9d738c}.tile b{color:var(--pink)}
+    .locked{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 34px}
+    .tile{aspect-ratio:4/3;border:1px solid var(--line);background:#0b050b;position:relative;overflow:hidden;background-repeat:no-repeat;background-size:400% 200%;transition:filter .18s ease,transform .18s ease}
+    .tile.media-ready{background-image:var(--locked-preview)}
+    .tile:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(5,2,5,.15) 63%,rgba(5,2,5,.92) 100%);pointer-events:none}
+    .tile:nth-child(1){background-position:0% 0%}.tile:nth-child(2){background-position:33.333% 0%}.tile:nth-child(3){background-position:66.667% 0%}.tile:nth-child(4){background-position:100% 0%}
+    .tile:nth-child(5){background-position:0% 100%}.tile:nth-child(6){background-position:33.333% 100%}.tile:nth-child(7){background-position:66.667% 100%}.tile:nth-child(8){background-position:100% 100%}
+    .tile span{position:absolute;z-index:2;left:10px;right:10px;bottom:10px;font-size:7px;letter-spacing:1.2px;color:#c695b0;text-shadow:0 1px 10px #000}.tile b{color:var(--pink)}
     .fine{font-size:8px;line-height:1.55;color:#725667;border-top:1px solid var(--line);padding-top:16px}
     .modal{position:fixed;z-index:20;inset:0;background:rgba(0,0,0,.76);display:grid;place-items:center;padding:18px}.hidden{display:none!important}.card{width:min(560px,100%);border:1px solid rgba(255,108,181,.3);background:#100810;padding:24px;box-shadow:0 24px 90px rgba(0,0,0,.7)}
     .card h2{font-size:28px;margin:4px 0 8px}.card p{color:#ad8c9f;line-height:1.5}.bill{border:1px solid var(--line);background:#0a050a;padding:14px;margin:18px 0}.bill-row{display:flex;justify-content:space-between;gap:18px;font-size:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)}.bill-row:last-child{border:0}.bill-row span{color:#856778}.bill-row strong{letter-spacing:.8px}
@@ -60,10 +64,14 @@
     </aside>
   </section>
   <section class="locked" aria-label="Locked premium media">
-    <div class="tile"><span><b>LOCKED</b> // DOMESTIC MEDIA 01</span></div>
+    <div class="tile"><span><b>LOCKED</b> // OFF-DUTY MEDIA 01</span></div>
     <div class="tile"><span><b>LOCKED</b> // MORALE MEDIA 02</span></div>
-    <div class="tile"><span><b>LOCKED</b> // TEXTILE STUDY 03</span></div>
-    <div class="tile"><span><b>LOCKED</b> // COMPANION STUDY 04</span></div>
+    <div class="tile"><span><b>LOCKED</b> // LOUNGE STUDY 03</span></div>
+    <div class="tile"><span><b>LOCKED</b> // VANITY STUDY 04</span></div>
+    <div class="tile"><span><b>LOCKED</b> // DOMESTIC DUTY 05</span></div>
+    <div class="tile"><span><b>LOCKED</b> // RECOVERY POSTURE 06</span></div>
+    <div class="tile"><span><b>LOCKED</b> // BEVERAGE STUDY 07</span></div>
+    <div class="tile"><span><b>LOCKED</b> // COMPANION STUDY 08</span></div>
   </section>
   <div class="fine">Only Organisms is not a payment processor. Earth card numbers, bank details, passwords and security codes are neither requested nor accepted. This page contains no payment backend.</div>
 </main>
@@ -143,7 +151,31 @@
     form.classList.add('hidden');
     verdict.classList.remove('hidden');
   });
+  async function loadLockedPreviews(){
+    const urls=[
+      '/assets/only-organisms/preview-q10-00.txt?v=20261002-1',
+      '/assets/only-organisms/preview-q10-01.txt?v=20261002-1'
+    ];
+    try{
+      const responses=await Promise.all(urls.map((url)=>fetch(url,{cache:'force-cache'})));
+      if(responses.some((response)=>!response.ok)) throw new Error('locked preview data unavailable');
+      const parts=await Promise.all(responses.map((response)=>response.text()));
+      const base64=parts.map((part)=>part.trim()).join('');
+      if(base64.length!==30000||!base64.startsWith('UklG')) throw new Error('locked preview integrity check failed');
+      const preview=new Image();
+      preview.onload=()=>{
+        document.documentElement.style.setProperty('--locked-preview','url("'+preview.src+'")');
+        document.querySelectorAll('.tile').forEach((tile)=>tile.classList.add('media-ready'));
+        document.body.dataset.lockedMedia='ready';
+      };
+      preview.onerror=()=>console.warn('Only Organisms preview media failed to decode.');
+      preview.src='data:image/webp;base64,'+base64;
+    }catch(error){
+      console.warn('Only Organisms preview media unavailable.',error);
+    }
+  }
   apply();
+  loadLockedPreviews();
 })();
 </script>
 </body>
