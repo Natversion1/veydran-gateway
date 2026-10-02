@@ -35,7 +35,7 @@
     .shot:nth-child(1):before{background-position:0 0}.shot:nth-child(2):before{background-position:100% 0}.shot:nth-child(3):before{background-position:0 100%}.shot:nth-child(4):before{background-position:100% 100%}
     .shot:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,5,7,.82) 0%,rgba(2,5,7,.08) 42%,rgba(2,5,7,.03) 100%),radial-gradient(circle at 50% 48%,transparent 42%,rgba(0,0,0,.12) 100%)}
     .shot:hover:before{filter:brightness(1.22) saturate(.92) contrast(1.04);transform:scale(1.035)}
-    .caption{position:absolute;z-index:2;left:17px;right:17px;bottom:15px}
+    .caption{position:absolute;z-index:2;left:17px;right:17px;bottom:15px}.shot.media-error:before{content:attr(data-media-error);position:absolute;z-index:3;left:18px;top:18px;color:#ff9bbf;font-size:8px;letter-spacing:1.4px}
     .caption small{display:block;font-size:7px;letter-spacing:1.5px;color:#7bdfff;margin-bottom:5px}.caption strong{display:block;font-size:17px;letter-spacing:-.2px;margin-bottom:4px}.caption span{font-size:9px;color:#88a1a9;letter-spacing:.35px}
     .admin-note{margin-top:18px;padding:18px 20px;border:1px solid var(--line);background:var(--panel);display:flex;justify-content:space-between;gap:24px;align-items:center}
     .admin-note p{margin:0;font-size:10px;line-height:1.55;color:#78949d;max-width:720px}.admin-note strong{color:#cfeef5}
@@ -72,10 +72,10 @@
     </section>
 
     <section class="gallery" aria-label="Archive 34-V media">
-      <article class="shot"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
-      <article class="shot"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
-      <article class="shot"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
-      <article class="shot"><div class="caption"><small>34-V // FRAME 04</small><strong>Soft-asset interaction</strong><span>Plush organism status unresolved.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-v2.webp?v=20261002-2" alt="" aria-hidden="true" decoding="sync" fetchpriority="high"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-v2.webp?v=20261002-2" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-v2.webp?v=20261002-2" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-v2.webp?v=20261002-2" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 04</small><strong>Soft-asset interaction</strong><span>Plush organism status unresolved.</span></div></article>
     </section>
 
     <section class="admin-note">
@@ -109,6 +109,12 @@
         toggle.textContent=vey?'ENGLISH':'VEYDRAN';
       }
       toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});
+      document.querySelectorAll('.shot-img').forEach((img)=>{
+        img.addEventListener('error',()=>{
+          const shot=img.closest('.shot');
+          if(shot){shot.classList.add('media-error');shot.setAttribute('data-media-error','MEDIA ASSET FAILED TO LOAD');}
+        });
+      });
       apply();
     })();
   </script>
