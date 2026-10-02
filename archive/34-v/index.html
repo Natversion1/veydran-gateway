@@ -31,8 +31,7 @@
     .meta small{display:block;font-size:7px;letter-spacing:1.3px;color:#557680;margin-bottom:4px}.meta strong{font-size:9px;letter-spacing:1px}
     .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .shot{position:relative;aspect-ratio:3/2;border:1px solid rgba(82,204,234,.16);overflow:hidden;background:#08090b}
-    .shot-img{position:absolute;z-index:0;width:200%;height:200%;max-width:none;object-fit:fill;opacity:1;filter:brightness(1.14) saturate(.92) contrast(1.04);transition:filter .25s ease,transform .35s ease}
-    .shot:nth-child(1) .shot-img{left:0;top:0}.shot:nth-child(2) .shot-img{left:-100%;top:0}.shot:nth-child(3) .shot-img{left:0;top:-100%}.shot:nth-child(4) .shot-img{left:-100%;top:-100%}
+    .shot-img{position:absolute;z-index:0;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:1;filter:brightness(1.14) saturate(.92) contrast(1.04);transition:filter .25s ease,transform .35s ease}
     .shot:after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(0deg,rgba(2,5,7,.68) 0%,rgba(2,5,7,.03) 40%,transparent 100%);pointer-events:none}
     .shot:hover .shot-img{filter:brightness(1.28) saturate(.98) contrast(1.02);transform:scale(1.02)}
     .caption{position:absolute;z-index:2;left:17px;right:17px;bottom:15px}.shot.media-error:before{content:attr(data-media-error);position:absolute;z-index:3;left:18px;top:18px;color:#ff9bbf;font-size:8px;letter-spacing:1.4px}
@@ -72,10 +71,10 @@
     </section>
 
     <section class="gallery" aria-label="Archive 34-V media">
-      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-final.webp?v=20261002-qa1" alt="" aria-hidden="true" decoding="sync" fetchpriority="high"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
-      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-final.webp?v=20261002-qa1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
-      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-final.webp?v=20261002-qa1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
-      <article class="shot"><img class="shot-img" src="/assets/34v-gallery-final.webp?v=20261002-qa1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 04</small><strong>Soft-asset interaction</strong><span>Plush organism status unresolved.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-01.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync" fetchpriority="high"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-02.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-03.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-04.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 04</small><strong>Soft-asset interaction</strong><span>Plush organism status unresolved.</span></div></article>
     </section>
 
     <section class="admin-note">
