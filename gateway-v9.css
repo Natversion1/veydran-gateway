@@ -265,35 +265,39 @@ body:before{
 .synergy-v9{
   position:relative;
   margin-top:38px!important;
-  min-height:570px;
+  min-height:610px;
   padding:0!important;
   overflow:hidden;
   display:flex;
   align-items:center;
   isolation:isolate;
-  background-image:
-    linear-gradient(90deg,
-      rgba(1,10,16,.97) 0%,
-      rgba(1,12,18,.94) 24%,
-      rgba(2,15,22,.80) 44%,
-      rgba(2,14,21,.42) 64%,
-      rgba(1,9,15,.16) 83%,
-      rgba(1,9,15,.10) 100%),
-    linear-gradient(0deg,rgba(1,8,13,.58) 0%,transparent 36%,rgba(1,8,13,.18) 100%),
-    url("assets/interspecies-synergy.webp?v=20261002-2");
+  background-image:url("assets/interspecies-synergy-hq.webp?v=20261002-3");
   background-size:cover;
-  background-position:center 52%;
-  box-shadow:0 28px 72px rgba(0,0,0,.28),inset 0 0 80px rgba(15,152,197,.035);
+  background-position:center center;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.34),
+    inset 0 0 90px rgba(18,145,190,.035);
 }
 .synergy-v9:before{
   content:"";
   position:absolute;
   inset:0;
-  z-index:-1;
+  z-index:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 17% 56%,rgba(26,178,212,.08),transparent 30%),
-    linear-gradient(90deg,rgba(1,10,16,.30),transparent 68%);
+    linear-gradient(90deg,
+      rgba(1,9,14,.86) 0%,
+      rgba(1,10,16,.76) 22%,
+      rgba(1,11,17,.56) 39%,
+      rgba(1,10,16,.25) 56%,
+      rgba(1,9,14,.08) 76%,
+      rgba(1,9,14,.12) 100%),
+    linear-gradient(0deg,
+      rgba(1,8,13,.62) 0%,
+      rgba(1,8,13,.18) 28%,
+      transparent 58%,
+      rgba(1,8,13,.14) 100%),
+    radial-gradient(circle at 24% 54%,rgba(13,92,120,.17),transparent 42%);
 }
 .synergy-v9:after{
   content:"● 04-77";
@@ -302,44 +306,38 @@ body:before{
   top:18px;
   z-index:3;
   padding:8px 10px;
-  border:1px solid rgba(101,255,192,.27);
-  background:rgba(0,14,18,.76);
+  border:1px solid rgba(101,255,192,.30);
+  background:rgba(0,14,18,.72);
   font-size:7px;
   letter-spacing:1.6px;
   color:var(--v9-mint);
-  box-shadow:0 0 18px rgba(77,255,185,.05);
-  backdrop-filter:blur(7px);
+  box-shadow:0 0 18px rgba(77,255,185,.06);
+  backdrop-filter:blur(8px);
 }
 .synergy-copy-v9{
   position:relative;
   z-index:2;
-  width:min(690px,64%);
-  margin-left:42px;
-  padding:38px 40px 36px 0;
+  width:min(650px,51%);
+  margin-left:48px;
+  padding:38px 0 36px;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  text-shadow:0 2px 18px rgba(0,0,0,.82);
+  text-shadow:
+    0 2px 18px rgba(0,0,0,.92),
+    0 0 36px rgba(0,0,0,.55);
 }
-.synergy-copy-v9:before{
-  content:"";
-  position:absolute;
-  left:-20px;
-  top:-18px;
-  right:-10px;
-  bottom:-18px;
-  z-index:-1;
-  background:linear-gradient(90deg,rgba(1,13,20,.42),rgba(1,13,20,.16) 72%,transparent);
-  border-left:1px solid rgba(65,213,247,.10);
-  backdrop-filter:blur(2px);
+.synergy-copy-v9 .kicker{
+  margin-bottom:10px;
+  color:#72cce3;
 }
-.synergy-copy-v9 .kicker{margin-bottom:10px}
 .synergy-copy-v9 h2{
-  font-size:clamp(38px,4.7vw,66px);
+  font-size:clamp(42px,4.55vw,64px);
   line-height:.98;
-  letter-spacing:-2.2px;
+  letter-spacing:-2.1px;
   margin:0 0 18px;
-  max-width:680px;
+  max-width:620px;
+  color:#effcff;
 }
 .synergy-copy-v9 .campaign-line{
   font-size:11px;
@@ -350,31 +348,32 @@ body:before{
 .synergy-copy-v9 p{
   font-size:13px;
   line-height:1.7;
-  color:#b4d3dc;
-  max-width:610px;
+  color:#c0dce4;
+  max-width:600px;
   margin:0 0 23px;
 }
 .synergy-metrics{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:8px;
-  max-width:620px;
+  max-width:600px;
 }
 .synergy-metrics span{
   padding:10px 11px;
-  border:1px solid rgba(66,211,245,.22);
-  background:rgba(3,24,34,.58);
+  border:1px solid rgba(88,220,252,.26);
+  background:rgba(2,17,25,.42);
   font-size:7px;
   letter-spacing:1.25px;
-  color:#b9dae4;
-  backdrop-filter:blur(5px);
+  color:#c8e7ee;
+  backdrop-filter:blur(6px);
 }
 .campaign-file{
   margin-top:27px;
   font-size:7px;
   letter-spacing:1.5px;
-  color:#6b97a5;
+  color:#7ba5b1;
 }
+
 /* COMMERCIAL FEED */
 .ad-section-v9{margin-top:20px!important}
 .ad-section-v9 .panel-head{margin-bottom:17px}
@@ -461,8 +460,8 @@ footer span{color:#456d79}
 @media(max-width:920px){
   .hero-v9{grid-template-columns:1fr;gap:25px;padding:54px 0 38px}
   .access-profile{min-height:0}
-  .synergy-v9{min-height:540px;background-position:58% center}
-  .synergy-copy-v9{width:min(650px,78%);margin-left:32px;padding:34px 30px 34px 0}
+  .synergy-v9{min-height:560px;background-position:56% center}
+  .synergy-copy-v9{width:min(610px,68%);margin-left:32px;padding:34px 0}
   .bulletin-list{grid-template-columns:1fr}
   .bulletin{border-right:0;border-bottom:1px solid rgba(66,203,239,.12);min-height:0}
   .bulletin:last-child{border-bottom:0}
@@ -508,16 +507,16 @@ footer span{color:#456d79}
   .service-icon{left:18px;top:18px;width:55px;height:55px}
   .service-access{top:27px}
   .synergy-v9{
-    min-height:590px;
+    min-height:620px;
     align-items:flex-end;
-    background-position:62% center;
-    background-image:
-      linear-gradient(0deg,rgba(1,9,15,.98) 0%,rgba(1,10,16,.90) 42%,rgba(1,9,15,.32) 72%,rgba(1,9,15,.10) 100%),
-      url("assets/interspecies-synergy.webp?v=20261002-2");
+    background-position:58% center;
+  }
+  .synergy-v9:before{
+    background:
+      linear-gradient(0deg,rgba(1,9,15,.96) 0%,rgba(1,10,16,.80) 39%,rgba(1,9,15,.24) 70%,rgba(1,9,15,.10) 100%);
   }
   .synergy-v9:after{right:12px;top:12px}
-  .synergy-copy-v9{width:auto;margin:0 18px 18px;padding:26px 18px 24px}
-  .synergy-copy-v9:before{inset:0;background:rgba(1,12,18,.62);border:1px solid rgba(65,213,247,.10)}
+  .synergy-copy-v9{width:auto;margin:0 20px 18px;padding:24px 0}
   .synergy-copy-v9 h2{font-size:40px;letter-spacing:-1.5px}
   .synergy-metrics{grid-template-columns:1fr 1fr}
   .vrax-data{flex-direction:column;gap:12px}
