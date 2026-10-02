@@ -10,7 +10,7 @@
   <title>Veydran Interstellar Authority</title>
   <meta name="description" content="Veydran Interstellar Authority Terran access node." />
   <style>body.vey-loading{visibility:hidden}</style>
-  <link rel="stylesheet" href="gateway-v8.css" />
+  <link rel="stylesheet" href="gateway-v9.css?v=20261002-1" />
 </head>
 <body class="vey-loading">
   <div class="scanline" aria-hidden="true"></div>
@@ -23,88 +23,142 @@
           <div class="brand-sub">TERRAN ACCESS NODE // PUBLIC NETWORK</div>
         </div>
       </div>
-      <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
+      <div class="topbar-right">
+        <div class="node-state"><i></i> PUBLIC MIRROR ONLINE</div>
+        <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
+      </div>
     </header>
 
-    <section class="hero">
-      <div class="eyebrow">EXTRASOLAR CIVIC GATEWAY // LOCAL MIRROR ACTIVE</div>
-      <h1>Terran access permitted.</h1>
-      <p class="lede">This node exposes only services considered non-sensitive under Veydran Imperial information policy. Your species classification has been noted.</p>
+    <section class="hero hero-v9">
+      <div class="hero-copy">
+        <div class="eyebrow">EXTRASOLAR CIVIC GATEWAY // LOCAL MIRROR ACTIVE</div>
+        <h1>Terran access permitted.</h1>
+        <p class="lede">This node exposes only services considered non-sensitive under Veydran Imperial information policy. Your species classification has been noted.</p>
+      </div>
+
+      <aside class="access-profile" aria-label="Terran access profile">
+        <div class="profile-label">LOCAL ACCESS PROFILE // T-00</div>
+        <div class="profile-row"><span>SPECIES</span><strong>TERRAN / PROVISIONAL</strong></div>
+        <div class="profile-row"><span>CLEARANCE</span><strong>PUBLIC // TIER 0</strong></div>
+        <div class="profile-row"><span>REALITY SYNC</span><strong class="good">NOMINAL</strong></div>
+        <div class="profile-row"><span>QUERY LOGGING</span><strong>ENABLED</strong></div>
+        <div class="profile-stamp">ACCESS DOES NOT CONSTITUTE CLEARANCE</div>
+      </aside>
     </section>
 
-    <section class="status panel">
-      <div class="panel-head">
-        <div>
-          <div class="kicker">CURRENT TERRAN FIELD OPERATION</div>
-          <h2>Commander Vrax</h2>
+    <section class="civic-strip" aria-label="Network information">
+      <div><small>NETWORK STATE</small><strong class="online">LOCAL MIRROR STABLE</strong></div>
+      <div><small>VISIBLE SERVICES</small><strong>4 PUBLIC // 1 ACCESSIBLE</strong></div>
+      <div><small>ARCHIVE RESPONSE ESTIMATE</small><strong>14–86 ROTATIONS</strong></div>
+    </section>
+
+    <div class="section-intro">
+      <div>
+        <div class="kicker">CIVIC SERVICES DIRECTORY // TERRAN CLASSIFICATION</div>
+        <h2>Public services</h2>
+      </div>
+      <div class="section-note">UNAVAILABLE SERVICES REMAIN VISIBLE FOR ADMINISTRATIVE TRANSPARENCY</div>
+    </div>
+
+    <section class="directory directory-v9" aria-label="Veydran public services">
+      <article class="service service-v9 live">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M7 13h34v23H7z"/><path d="m8 14 16 13 16-13"/><path d="M34 7c4 1 7 4 8 8"/><path d="M36 3c6 1 10 5 12 11"/></svg>
         </div>
-        <div class="status-badge"><span></span> ACTIVE</div>
-      </div>
-      <div class="status-grid">
-        <div><small>WORLD</small><strong>EARTH</strong></div>
-        <div><small>STATUS</small><strong>INVESTIGATION ACTIVE</strong></div>
-        <div><small>MISSION</small><strong>CULTURAL + NUTRITIONAL RECONNAISSANCE</strong></div>
-        <div><small>LOCAL THREAT INDEX</small><strong>INCONCLUSIVE</strong></div>
-      </div>
-    </section>
-
-    <section class="directory">
-      <article class="service live">
+        <div class="service-access">PUBLIC ACCESS</div>
         <div class="service-code">01 // COMMUNICATIONS</div>
         <h3>Vmail</h3>
-        <p>Secure Veydran communications terminal.</p>
+        <p>Secure Veydran communications terminal. Terran routing is tolerated.</p>
         <a href="https://vmail.veydran.space/">OPEN SERVICE</a>
       </article>
 
-      <article class="service" data-denied-title="ACCESS DENIED" data-denied="IMPERIAL RECORDS ACCESS DENIED // TERRAN CLEARANCE INSUFFICIENT.">
+      <article class="service service-v9" data-denied-title="ACCESS DENIED" data-denied="IMPERIAL RECORDS ACCESS DENIED // TERRAN CLEARANCE INSUFFICIENT.">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M10 8h28v9H10z"/><path d="M8 20h32v9H8z"/><path d="M6 32h36v9H6z"/><path d="M17 12h14M17 24h14M17 36h14"/></svg>
+        </div>
+        <div class="service-access">CLEARANCE REQUIRED</div>
         <div class="service-code">02 // ARCHIVES</div>
         <h3>Imperial Records</h3>
-        <p>Personnel, planetary and operational archive.</p>
+        <p>Personnel, planetary and operational archive. Some centuries may be redacted.</p>
         <button type="button">REQUEST ACCESS</button>
       </article>
 
-      <article class="service" data-denied-title="ASSESSMENT WITHHELD" data-denied="PLANETARY ASSESSMENT // EARTH // INVESTIGATION ACTIVE // FINAL CLASSIFICATION WITHHELD.">
+      <article class="service service-v9" data-denied-title="ASSESSMENT WITHHELD" data-denied="PLANETARY ASSESSMENT // EARTH // FIELD ANALYSIS INCOMPLETE // FINAL CLASSIFICATION WITHHELD.">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12"/><circle cx="24" cy="24" r="3"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8"/><path d="M16 17c4 3 12 3 16 0M16 31c4-3 12-3 16 0"/></svg>
+        </div>
+        <div class="service-access">REPORT WITHHELD</div>
         <div class="service-code">03 // ASSESSMENT</div>
         <h3>Planetary Assessment</h3>
-        <p>Current Veydran analysis of Terran civilisation.</p>
+        <p>Current Veydran analysis of Terran civilisation and associated biological decisions.</p>
         <button type="button">VIEW ASSESSMENT</button>
       </article>
 
-      <article class="service" data-denied-title="COMMAND NETWORK CLASSIFIED" data-denied="COMMAND NETWORK CLASSIFIED // QUERY LOGGED // PLEASE REMAIN WHERE YOU ARE.">
+      <article class="service service-v9" data-denied-title="COMMAND NETWORK CLASSIFIED" data-denied="COMMAND NETWORK CLASSIFIED // QUERY LOGGED // PLEASE REMAIN WHERE YOU ARE.">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><circle cx="11" cy="37" r="4"/><circle cx="37" cy="37" r="4"/><circle cx="24" cy="25" r="4"/><path d="M24 12v9M21 27 14 34M27 27l7 7"/></svg>
+        </div>
+        <div class="service-access">CLASSIFIED</div>
         <div class="service-code">04 // COMMAND</div>
         <h3>Command Network</h3>
-        <p>Operational command and classified strategic systems.</p>
+        <p>Operational command and strategic systems. Public curiosity is not a recognised credential.</p>
         <button type="button">CONNECT</button>
       </article>
     </section>
 
-    <section class="synergy panel" aria-labelledby="synergyTitle">
-      <div class="panel-head synergy-head">
-        <div>
-          <div class="kicker">CIVIC WORKFORCE BUREAU // PUBLIC INFORMATION CAMPAIGN</div>
-          <h2 id="synergyTitle">Interspecies Synergy Initiative</h2>
-        </div>
-        <div class="synergy-status"><span></span> MORALE COMPLIANT</div>
+    <section class="bulletin-panel panel" aria-label="Civic service bulletins">
+      <div class="bulletin-head">
+        <strong>CIVIC SERVICE BULLETINS</strong>
+        <span>AUTOMATIC LOCALISATION // TERRAN REGION</span>
       </div>
-      <div class="synergy-banner">
-        <img src="assets/interspecies-synergy.webp?v=1" alt="Veydran colleagues collaborating in an orbital office" />
-        <div class="synergy-shade" aria-hidden="true"></div>
-        <div class="synergy-copy">
-          <div class="synergy-eyebrow">ALL SPECIES. ONE PURPOSE.</div>
-          <h3>Different worlds. Brighter results.</h3>
-          <p>Cross-sector collaboration improves orbital productivity. Participation in morale remains strongly encouraged.</p>
-          <div class="synergy-pills" aria-label="Campaign priorities">
-            <span>DIVERSE PERSPECTIVES</span>
-            <span>STRONGER TEAMS</span>
-            <span>HIGHER PRODUCTIVITY</span>
-            <span>A BRIGHTER GALAXY</span>
-          </div>
-        </div>
-        <div class="synergy-file">CIVIC IMAGE 04-77 // APPROVED PUBLIC DISTRIBUTION</div>
+      <div class="bulletin-list">
+        <article class="bulletin">
+          <small>NOTICE // SATELLITE ADMINISTRATION</small>
+          <p>Terran moon-registration requests continue to return <b>ZERO ELIGIBLE SATELLITES</b>. No system defect has been identified.</p>
+        </article>
+        <article class="bulletin">
+          <small>FORM T-19-B // ATMOSPHERIC COMPLAINTS</small>
+          <p>Submissions are temporarily suspended. The current local atmosphere is considered <b>SELF-SERVICE</b>.</p>
+        </article>
+        <article class="bulletin">
+          <small>IMPERIAL RECORDS // RESPONSE TIMES</small>
+          <p>Estimated response: <b>14–86 ROTATIONS</b>. Repeated enquiries may restart the estimate.</p>
+        </article>
       </div>
     </section>
 
-    <section class="ad-section panel">
+    <section class="vrax-record panel" aria-label="Local field representative">
+      <div class="vrax-glyph" aria-hidden="true">VX</div>
+      <div>
+        <div class="kicker">LOCAL CIVIC NOTICE // TERRAN REGION 04</div>
+        <h3>Field representative assigned: Commander Vrax</h3>
+        <p>Department of Cultural + Nutritional Reconnaissance // local reporting authority.</p>
+      </div>
+      <div class="vrax-data">
+        <div><small>DEPLOYMENT</small><strong class="active">ONGOING</strong></div>
+        <div><small>WORLD</small><strong>EARTH</strong></div>
+        <div><small>CASE</small><strong>T-00-447</strong></div>
+      </div>
+    </section>
+
+    <section class="synergy-v9 panel" aria-labelledby="synergyTitle">
+      <div class="synergy-copy-v9">
+        <div class="kicker">CIVIC WORKFORCE BUREAU // PUBLIC INFORMATION CAMPAIGN</div>
+        <div class="campaign-line">ALL SPECIES. ONE PURPOSE.</div>
+        <h2 id="synergyTitle">Different worlds. Brighter results.</h2>
+        <p>Cross-sector collaboration improves orbital productivity. Participation in morale remains strongly encouraged.</p>
+        <div class="synergy-metrics" aria-label="Campaign priorities">
+          <span>DIVERSE PERSPECTIVES</span>
+          <span>STRONGER TEAMS</span>
+          <span>HIGHER PRODUCTIVITY</span>
+          <span>A BRIGHTER GALAXY</span>
+        </div>
+        <div class="campaign-file">CIVIC IMAGE 04-77 // APPROVED PUBLIC DISTRIBUTION // MORALE COMPLIANT</div>
+      </div>
+      <div class="synergy-art-v9" role="img" aria-label="Veydran colleagues collaborating in an orbital workplace"></div>
+    </section>
+
+    <section class="ad-section ad-section-v9 panel">
       <div class="panel-head">
         <div>
           <div class="kicker">PUBLIC NETWORK SPONSORSHIP FEED</div>
@@ -113,7 +167,7 @@
         <div class="ad-label">AUTO-TARGETED // SPECIES PROFILE</div>
       </div>
 
-      <div class="ad-grid">
+      <div class="ad-grid ad-grid-v9">
         <article class="ad-card hot artwork-card featured" id="singlesCard">
           <button type="button" id="singlesAd" class="artwork-button" aria-label="View Hot Gargazian Singles advert">
             <img id="singlesArtwork" src="Singles.png?v=8" data-vey-src="Singles.png?v=8" data-en-src="Singles.png?v=8" alt="Hot Gargazian Singles in your sector" />
@@ -128,23 +182,34 @@
         </article>
 
         <article class="ad-card artwork-card" id="storageCard">
-          <button type="button" class="artwork-button" data-ad-title="SERVICE UNAVAILABLE" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS." aria-label="View orbital storage advert">
-            <img src="assets/orbital-storage-vey.svg?v=8" data-vey-src="assets/orbital-storage-vey.svg?v=8" data-en-src="assets/orbital-storage-en.svg?v=8" alt="Orbital storage advert" />
-            <span class="artwork-fallback"><span class="ad-tag">SPONSORED // DOMESTIC</span><strong>ORBITAL STORAGE RUNNING LOW?</strong><span>Upgrade to six additional moons of encrypted household capacity.</span><em>CHECK ELIGIBILITY</em></span>
+          <button type="button" class="artwork-button cinematic-ad storage" data-ad-title="SERVICE UNAVAILABLE" data-ad-message="SERVICE UNAVAILABLE IN TERRAN JURISDICTION // YOUR MOON COUNT IS BELOW MINIMUM REQUIREMENTS." aria-label="View orbital storage advert">
+            <span class="sponsor-meta">SPONSORED // DOMESTIC</span>
+            <span class="cinematic-copy">
+              <span class="brandline">VEYDRAN ORBITAL STORAGE // HOUSEHOLD</span>
+              <h3>Orbital storage running low?</h3>
+              <p>Secure cargo vaults, encrypted access pods and household moon storage.</p>
+              <span class="offer"><b>6</b><span>EXTRA MOONS<br/>FOR NEW CLIENTS</span></span>
+              <em>CHECK ELIGIBILITY &gt;&gt;&gt;</em>
+            </span>
           </button>
         </article>
 
         <article class="ad-card artwork-card" id="broodCard">
-          <button type="button" class="artwork-button" data-ad-title="QUOTE DECLINED" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS." aria-label="View brood pod insurance advert">
-            <img src="assets/brood-pod-insurance-vey.svg?v=8" data-vey-src="assets/brood-pod-insurance-vey.svg?v=8" data-en-src="assets/brood-pod-insurance-en.svg?v=8" alt="Brood pod insurance advert" />
-            <span class="artwork-fallback"><span class="ad-tag">SPONSORED // INSURANCE</span><strong>PROTECT YOUR BROOD POD</strong><span>Comprehensive accidental plasma, meteor and ceremonial damage cover.</span><em>GET QUOTE</em></span>
+          <button type="button" class="artwork-button cinematic-ad brood" data-ad-title="QUOTE DECLINED" data-ad-message="QUOTE DECLINED // TERRAN BIOLOGY IS OUTSIDE CURRENT UNDERWRITING PARAMETERS." aria-label="View brood pod insurance advert">
+            <span class="sponsor-meta">SPONSORED // INSURANCE</span>
+            <span class="cinematic-copy">
+              <span class="brandline">VEYDRAN LIFE ASSURANCE // BROOD POD COVER</span>
+              <h3>Protect your brood pod.</h3>
+              <p>Ceremonial damage, meteor impact and emergency medi-plasma support for growing hatch clusters.</p>
+              <em>GET QUOTE &gt;&gt;&gt;</em>
+            </span>
           </button>
         </article>
       </div>
     </section>
 
-    <section class="notice panel">
-      <div class="kicker">PUBLIC ACCESS NOTICE</div>
+    <section class="notice notice-v9 panel">
+      <div class="kicker">PUBLIC ACCESS NOTICE // T-00</div>
       <p>Terran users are reminded that curiosity does not constitute clearance. Repeated attempts to access restricted systems may be interpreted as enthusiasm and reassigned accordingly.</p>
     </section>
 
@@ -184,6 +249,6 @@
   </div>
 
   <script>window.setTimeout(()=>document.body.classList.remove('vey-loading'),1500);</script>
-  <script src="gateway-v7.js"></script>
+  <script src="gateway-v7.js?v=20261002-1"></script>\n  <script src="gateway-v9-art.js?v=20261002-1"></script>
 </body>
 </html>
