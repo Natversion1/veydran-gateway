@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#160307">
+  <meta name="robots" content="index,follow">
+  <title>Commander Vrax — Electronic Record of Achievement | Veydran.space</title>
+  <meta name="description" content="Verified Veydran Electronic Record of Achievement for Commander Vrax.">
+  <style>
+    :root{
+      --ink:#130206;
+      --wine:#2b050b;
+      --wine2:#4d0b16;
+      --gold:#d8b86a;
+      --gold2:#8e692f;
+      --cream:#f1dfac;
+      --glow:rgba(216,184,106,.24);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#110205;color:var(--cream)}
+    body{
+      min-height:100svh;
+      overflow-x:hidden;
+      font-family:Georgia,"Times New Roman",serif;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(111,18,32,.33), transparent 42%),
+        radial-gradient(circle at 15% 80%, rgba(93,9,24,.18), transparent 35%),
+        linear-gradient(180deg,#190308 0%,#090103 100%);
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.2;
+      background-image:
+        radial-gradient(circle at 20% 30%,#f4d88d 0 1px,transparent 1.4px),
+        radial-gradient(circle at 71% 19%,#f4d88d 0 1px,transparent 1.4px),
+        radial-gradient(circle at 82% 72%,#f4d88d 0 1px,transparent 1.4px),
+        radial-gradient(circle at 37% 83%,#f4d88d 0 1px,transparent 1.4px);
+      background-size:310px 270px,390px 360px,440px 410px,530px 470px;
+    }
+    .topbar{
+      height:66px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 clamp(18px,4vw,58px);border-bottom:1px solid rgba(216,184,106,.38);
+      background:linear-gradient(180deg,rgba(64,8,16,.83),rgba(28,3,8,.56));
+      box-shadow:0 8px 35px rgba(0,0,0,.28);position:relative;z-index:5
+    }
+    .brand{
+      color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.03em;
+      font-size:clamp(18px,2.2vw,30px);white-space:nowrap
+    }
+    .brand:before{content:"V";display:inline-grid;place-items:center;margin-right:.55em;
+      width:1.35em;height:1.35em;border:1px solid var(--gold2);transform:rotate(45deg);
+      font-size:.58em;line-height:1}
+    .brand span{display:inline-block}
+    .kicker{font-size:11px;letter-spacing:.24em;color:#b99757;text-transform:uppercase;text-align:right}
+    main{min-height:calc(100svh - 66px);display:grid;place-items:center;padding:28px 14px 44px}
+    .archive{width:min(1180px,96vw);text-align:center}
+    .eyebrow{
+      margin:0 0 8px;font:600 11px/1.5 Arial,sans-serif;letter-spacing:.28em;
+      color:#b9914d;text-transform:uppercase
+    }
+    h1{font-size:clamp(22px,3vw,42px);font-weight:500;margin:0;color:#f0d58d;
+      text-shadow:0 0 22px rgba(216,184,106,.12)}
+    .sub{
+      margin:8px auto 20px;max-width:760px;color:#9e804b;
+      font:12px/1.5 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase
+    }
+    .stage{
+      position:relative;
+      width:min(1080px,94vw);
+      height:clamp(470px,68vw,720px);
+      margin:0 auto;
+      perspective:1800px;
+      isolation:isolate;
+    }
+    .record{
+      position:absolute;left:50%;top:50%;
+      width:min(920px,88vw);aspect-ratio:4/3;
+      transform:translate(-50%,-48%) scale(.76);
+      opacity:0;filter:blur(4px) brightness(.55);
+      transition:transform 900ms cubic-bezier(.16,.76,.17,1),opacity 520ms ease 220ms,filter 800ms ease;
+      z-index:1;pointer-events:none
+    }
+    .record img{
+      width:100%;height:100%;display:block;object-fit:contain;
+      border:1px solid rgba(216,184,106,.48);
+      box-shadow:0 28px 80px rgba(0,0,0,.58),0 0 40px rgba(126,22,36,.18)
+    }
+    .book{
+      position:absolute;left:50%;top:50%;
+      width:clamp(230px,31vw,410px);
+      aspect-ratio:3/4;
+      transform:translate(-50%,-50%);
+      transform-style:preserve-3d;
+      transform-origin:left center;
+      z-index:3;
+      cursor:pointer;
+      border:0;background:none;padding:0;
+      transition:transform 1100ms cubic-bezier(.2,.72,.16,1),filter 800ms ease,opacity 650ms ease;
+      filter:drop-shadow(0 32px 35px rgba(0,0,0,.52))
+    }
+    .book:focus-visible{outline:2px solid #f0d58d;outline-offset:8px;border-radius:8px}
+    .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:7px;overflow:hidden}
+    .front{transform:rotateY(0)}
+    .front img{width:100%;height:100%;display:block;object-fit:cover}
+    .back{
+      transform:rotateY(180deg);
+      border:1px solid #a47d38;
+      background:
+        linear-gradient(110deg,rgba(255,255,255,.06),transparent 18%),
+        radial-gradient(circle at 55% 38%,rgba(126,20,36,.75),transparent 58%),
+        linear-gradient(135deg,#64101e,#230409 70%);
+      box-shadow:inset 0 0 0 5px rgba(206,171,91,.08),inset 15px 0 30px rgba(0,0,0,.35)
+    }
+    .back:after{
+      content:"VERA";position:absolute;inset:0;display:grid;place-items:center;
+      color:rgba(222,188,105,.42);letter-spacing:.35em;font-size:clamp(18px,3vw,38px)
+    }
+    .spine{
+      position:absolute;left:0;top:2%;bottom:2%;width:7px;z-index:8;
+      background:linear-gradient(90deg,#311018,#8c2936,#341018);
+      box-shadow:1px 0 4px rgba(0,0,0,.5)
+    }
+    .stage.open .record{
+      opacity:1;filter:blur(0) brightness(1);
+      transform:translate(-50%,-50%) scale(1);
+      pointer-events:auto
+    }
+    .stage.open .book{
+      transform:translate(-39%,-50%) rotateY(-158deg) translateX(-18%);
+      filter:drop-shadow(-16px 25px 25px rgba(0,0,0,.42));
+      opacity:.92
+    }
+    .scan{
+      position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.12;
+      background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,220,135,.16) 4px);
+      mix-blend-mode:screen
+    }
+    .hint{
+      margin-top:-6px;min-height:22px;
+      color:#b08e52;font:11px/1.5 Arial,sans-serif;
+      letter-spacing:.22em;text-transform:uppercase
+    }
+    .hint b{color:#e2bf6d;font-weight:600}
+    .status{
+      position:absolute;right:1.5%;top:4%;z-index:6;
+      font:10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;
+      letter-spacing:.12em;color:#bb9c5c;text-align:right;opacity:.72
+    }
+    .status:before{content:"●";color:#78a56c;margin-right:7px;text-shadow:0 0 8px #78a56c}
+    .loading .book{opacity:.22;pointer-events:none}
+    .loading .hint:after{content:"ACCESSING ARCHIVE…"}
+    .error .hint{color:#d67b78}
+    .error .hint:after{content:"ARCHIVE MEDIA UNAVAILABLE"}
+    @media(max-width:760px){
+      .topbar{height:58px;padding:0 14px}.kicker{display:none}
+      main{min-height:calc(100svh - 58px);padding:18px 8px 28px}
+      .sub{margin-bottom:8px;font-size:9px}
+      .stage{height:min(78svh,680px);width:98vw}
+      .record{width:96vw}
+      .book{width:min(58vw,300px)}
+      .stage.open .book{
+        transform:translate(-15%,-50%) rotateY(-150deg) translateX(-18%);
+        opacity:.55
+      }
+      .status{display:none}
+      .hint{font-size:9px;margin-top:-14px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .book,.record{transition:none!important}
+      .stage.open .book{opacity:.08;transform:translate(-50%,-50%) scale(.92)}
+      .stage.open .record{transform:translate(-50%,-50%) scale(1)}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Veydran.space home"><span>Veydran.space</span></a>
+    <div class="kicker">VERA // Personnel Archive // Clearance Confirmed</div>
+  </header>
+
+  <main>
+    <section class="archive" aria-labelledby="pageTitle">
+      <p class="eyebrow">Veydran Electronic Record of Achievement</p>
+      <h1 id="pageTitle">Commander Vrax</h1>
+      <p class="sub">Verified academic and strategic accreditation record // image data sealed by Veydran authority</p>
+
+      <div class="stage loading" id="stage">
+        <div class="status">RECORD VERIFIED<br>VSA-VAEI-9K-VRAX-7743</div>
+
+        <div class="record" id="record" role="button" tabindex="-1" aria-label="Close Commander Vrax record">
+          <img id="recordImg" alt="Commander Vrax's redacted Veydran Electronic Record of Achievement">
+        </div>
+
+        <button class="book" id="book" type="button" aria-expanded="false" aria-controls="record" aria-label="Open Commander Vrax's Veydran Electronic Record of Achievement">
+          <span class="face front"><img id="coverImg" alt="Veydran Electronic Record of Achievement cover"></span>
+          <span class="face back" aria-hidden="true"></span>
+          <span class="spine" aria-hidden="true"></span>
+        </button>
+        <div class="scan" aria-hidden="true"></div>
+      </div>
+
+      <div class="hint" id="hint" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const stage = document.getElementById('stage');
+      const book = document.getElementById('book');
+      const record = document.getElementById('record');
+      const coverImg = document.getElementById('coverImg');
+      const recordImg = document.getElementById('recordImg');
+      const hint = document.getElementById('hint');
+
+      const loadB64 = async (url) => {
+        const r = await fetch(url, {cache:'force-cache'});
+        if (!r.ok) throw new Error('asset');
+        return (await r.text()).replace(/\s+/g,'');
+      };
+
+      const setOpen = (open) => {
+        stage.classList.toggle('open', open);
+        book.setAttribute('aria-expanded', String(open));
+        book.setAttribute('aria-label', open ? 'Close Commander Vrax record' : "Open Commander Vrax's Veydran Electronic Record of Achievement");
+        record.tabIndex = open ? 0 : -1;
+        hint.innerHTML = open ? '<b>RECORD UNSEALED</b> // SELECT AGAIN OR PRESS ESC TO CLOSE' : '<b>SELECT RECORD</b> // OPEN VERIFIED CREDENTIAL';
+      };
+
+      Promise.all([
+        loadB64('assets/cover.b64'),
+        loadB64('assets/record.b64')
+      ]).then(([cover, recordData]) => {
+        coverImg.src = 'data:image/webp;base64,' + cover;
+        recordImg.src = 'data:image/webp;base64,' + recordData;
+        return Promise.all([coverImg.decode(), recordImg.decode()]);
+      }).then(() => {
+        stage.classList.remove('loading');
+        hint.innerHTML = '<b>SELECT RECORD</b> // OPEN VERIFIED CREDENTIAL';
+      }).catch(() => {
+        stage.classList.remove('loading');
+        stage.classList.add('error');
+      });
+
+      book.addEventListener('click', () => setOpen(!stage.classList.contains('open')));
+      record.addEventListener('click', () => setOpen(false));
+      record.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(false); book.focus(); }
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && stage.classList.contains('open')) { setOpen(false); book.focus(); }
+      });
+    })();
+  </script>
+</body>
+</html>
