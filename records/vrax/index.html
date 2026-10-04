@@ -60,7 +60,7 @@ a{color:inherit}
     linear-gradient(180deg,#35060e 0%,#170307 100%);
   box-shadow:0 32px 80px var(--shadow),inset 0 0 70px rgba(0,0,0,.28);
   overflow:hidden;opacity:0;transform:scale(.92) translateY(10px);
-  filter:brightness(.68);transition:opacity .36s ease .32s,transform .9s cubic-bezier(.2,.78,.16,1),filter .65s ease;
+  filter:brightness(.68);transition:opacity .34s ease .26s,transform .72s cubic-bezier(.2,.78,.16,1),filter .52s ease;
   z-index:2
 }
 .stage.open .record{opacity:1;transform:scale(1) translateY(0);filter:brightness(1)}
@@ -123,7 +123,7 @@ a{color:inherit}
 .redacted .seal b{display:block;font-size:25px;letter-spacing:.12em;color:#e45e60}
 .redacted .seal span{display:block;margin-top:7px;font:9px Arial,sans-serif;letter-spacing:.25em;color:#d26f62}
 .redacted .glyph{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#d9b45d;letter-spacing:.35em;font-size:17px}
-.identity h1{margin:2px 0 0;font-size:clamp(34px,4vw,62px);line-height:.98;color:#f1d27c;text-shadow:0 2px 16px rgba(0,0,0,.38)}
+.identity h1{margin:2px 0 0;font-size:clamp(34px,3.25vw,54px);line-height:1;color:#f1d27c;text-shadow:0 2px 16px rgba(0,0,0,.38);white-space:nowrap}
 .identity h2{margin:7px 0 4px;padding-bottom:7px;border-bottom:1px solid var(--gold2);font-size:clamp(19px,2vw,30px);font-weight:500;color:#edd28b}
 .verifyline{font-size:11px;color:#c39a55;margin-bottom:12px}
 .facts{display:grid;grid-template-columns:145px 1fr;border-top:1px solid rgba(228,195,111,.32)}
@@ -159,13 +159,14 @@ a{color:inherit}
 /* cover */
 .cover{
   position:absolute;left:50%;top:50%;width:min(510px,42vw);aspect-ratio:3/4;
-  transform:translate(-50%,-50%);transform-origin:18px center;transform-style:preserve-3d;
+  transform:translate(-50%,-50%);transform-origin:left center;
   z-index:20;cursor:pointer;border:0;padding:0;background:transparent;
-  transition:transform .92s cubic-bezier(.2,.75,.17,1),opacity .6s ease .28s,filter .7s ease;
-  filter:drop-shadow(0 32px 34px rgba(0,0,0,.52))
+  transition:transform .78s cubic-bezier(.22,.72,.18,1),opacity .28s ease .5s,filter .6s ease;
+  filter:drop-shadow(0 32px 34px rgba(0,0,0,.52));
+  will-change:transform,opacity
 }
 .cover:focus-visible{outline:2px solid var(--gold);outline-offset:9px}
-.coverface{position:absolute;inset:0;backface-visibility:hidden;border-radius:8px;overflow:hidden}
+.coverface{position:absolute;inset:0;border-radius:8px;overflow:hidden}
 .coverfront{
   border:1px solid #4d111b;
   background:
@@ -178,26 +179,19 @@ a{color:inherit}
 .coverfront:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:7px;background:linear-gradient(90deg,#431018,#a52737,#431018);box-shadow:3px 0 6px rgba(0,0,0,.38)}
 .corner{position:absolute;width:54px;height:54px;border-color:var(--gold);border-style:solid;filter:drop-shadow(0 1px 1px #4b240d)}
 .corner.tr{right:0;top:0;border-width:9px 9px 0 0;border-radius:0 8px 0 0}.corner.br{right:0;bottom:0;border-width:0 9px 9px 0;border-radius:0 0 8px 0}
-.covermark{position:absolute;top:9%;left:12%;right:9%;text-align:center;color:#f0cf79}
-.cover-v{font-size:60px;font-weight:700;line-height:.8;margin-bottom:14px}
-.stair{position:absolute;left:13%;top:28%;width:116px;height:94px}
-.stair span{position:absolute;height:15px;background:var(--gold);transform-origin:left center}
-.stair span:nth-child(1){left:0;top:66px;width:54px}.stair span:nth-child(2){left:40px;top:40px;width:54px}.stair span:nth-child(3){left:80px;top:14px;width:54px}
-.stair span:after{content:"";position:absolute;left:0;bottom:0;width:15px;height:41px;background:var(--gold)}
-.cover-title{font-size:clamp(26px,3vw,42px);line-height:1.03;margin:32px 0 0 15%;text-align:left;text-shadow:0 1px 0 rgba(75,30,4,.4)}
-.cover-sub{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:25px;letter-spacing:.31em}
+.covermark{position:absolute;top:10%;left:8%;right:8%;text-align:center;color:#f0cf79}
+.cover-v{display:block;font-size:64px;font-weight:700;line-height:.9;margin-bottom:12px}
+.stair{display:none}
+.cover-title{display:block;font-size:clamp(27px,3vw,41px);line-height:1.08;margin:22px auto 0;max-width:88%;text-align:center;text-shadow:0 1px 0 rgba(75,30,4,.4)}
+.cover-sub{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:24px;letter-spacing:.31em}
 .cover-sub:before,.cover-sub:after{content:"";height:1px;width:85px;background:var(--gold)}
-.coverback{
-  transform:rotateY(180deg);
-  border:1px solid #5b1820;
-  background:
-    radial-gradient(circle at 38% 28%,rgba(155,28,42,.26),transparent 38%),
-    repeating-radial-gradient(ellipse at 45% 40%,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
-    linear-gradient(125deg,#741522,#4f0b17);
-  box-shadow:inset -20px 0 28px rgba(0,0,0,.34),inset 0 0 0 10px rgba(228,195,111,.035)
+.coverback{display:none}
+.stage.open .cover{
+  transform:translate(-50%,-50%) translateX(-155px) scaleX(.035) skewY(-1deg);
+  opacity:0;
+  filter:drop-shadow(-5px 18px 14px rgba(0,0,0,.25));
+  pointer-events:none
 }
-.coverback:after{content:"VERA";position:absolute;inset:0;display:grid;place-items:center;color:rgba(228,195,111,.18);font-size:41px;letter-spacing:.35em}
-.stage.open .cover{transform:translate(-54%,-50%) rotateY(-116deg) translateX(-40px);opacity:.2;filter:drop-shadow(-13px 20px 22px rgba(0,0,0,.32));pointer-events:none}
 .stage:not(.open) .record{pointer-events:none}
 .openhint{
   position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);z-index:40;white-space:nowrap;
@@ -238,11 +232,11 @@ a{color:inherit}
   .comment{grid-template-columns:44px 1fr}.bookico{width:40px;height:40px}.quote{font-size:13px}.attribution{font-size:10px}
   .footerline{font-size:10px}
   .cover{width:min(82vw,410px)}
-  .stage.open .cover{transform:translate(-44%,-50%) rotateY(-108deg) translateX(-26px)}
+  .stage.open .cover{transform:translate(-50%,-50%) translateX(-72px) scaleX(.04);opacity:0}
   .close{top:60px;right:8px}
 }
 @media(prefers-reduced-motion:reduce){
-  .cover,.record{transition:none!important}.stage.open .cover{opacity:0}.stage.open .record{opacity:1}
+  .cover,.record{transition:none!important}.stage.open .cover{opacity:0;transform:translate(-50%,-50%) scaleX(.02)}.stage.open .record{opacity:1}
 }
 </style>
 </head>
