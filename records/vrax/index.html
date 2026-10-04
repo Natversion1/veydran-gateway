@@ -1,255 +1,361 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#160307">
-  <meta name="robots" content="index,follow">
-  <title>Commander Vrax — Electronic Record of Achievement | Veydran.space</title>
-  <meta name="description" content="Verified Veydran Electronic Record of Achievement for Commander Vrax.">
-  <style>
-    :root{
-      --ink:#130206;
-      --wine:#2b050b;
-      --wine2:#4d0b16;
-      --gold:#d8b86a;
-      --gold2:#8e692f;
-      --cream:#f1dfac;
-      --glow:rgba(216,184,106,.24);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:#110205;color:var(--cream)}
-    body{
-      min-height:100svh;
-      overflow-x:hidden;
-      font-family:Georgia,"Times New Roman",serif;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(111,18,32,.33), transparent 42%),
-        radial-gradient(circle at 15% 80%, rgba(93,9,24,.18), transparent 35%),
-        linear-gradient(180deg,#190308 0%,#090103 100%);
-    }
-    body:before{
-      content:"";position:fixed;inset:0;pointer-events:none;opacity:.2;
-      background-image:
-        radial-gradient(circle at 20% 30%,#f4d88d 0 1px,transparent 1.4px),
-        radial-gradient(circle at 71% 19%,#f4d88d 0 1px,transparent 1.4px),
-        radial-gradient(circle at 82% 72%,#f4d88d 0 1px,transparent 1.4px),
-        radial-gradient(circle at 37% 83%,#f4d88d 0 1px,transparent 1.4px);
-      background-size:310px 270px,390px 360px,440px 410px,530px 470px;
-    }
-    .topbar{
-      height:66px;display:flex;align-items:center;justify-content:space-between;
-      padding:0 clamp(18px,4vw,58px);border-bottom:1px solid rgba(216,184,106,.38);
-      background:linear-gradient(180deg,rgba(64,8,16,.83),rgba(28,3,8,.56));
-      box-shadow:0 8px 35px rgba(0,0,0,.28);position:relative;z-index:5
-    }
-    .brand{
-      color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.03em;
-      font-size:clamp(18px,2.2vw,30px);white-space:nowrap
-    }
-    .brand:before{content:"V";display:inline-grid;place-items:center;margin-right:.55em;
-      width:1.35em;height:1.35em;border:1px solid var(--gold2);transform:rotate(45deg);
-      font-size:.58em;line-height:1}
-    .brand span{display:inline-block}
-    .kicker{font-size:11px;letter-spacing:.24em;color:#b99757;text-transform:uppercase;text-align:right}
-    main{min-height:calc(100svh - 66px);display:grid;place-items:center;padding:28px 14px 44px}
-    .archive{width:min(1180px,96vw);text-align:center}
-    .eyebrow{
-      margin:0 0 8px;font:600 11px/1.5 Arial,sans-serif;letter-spacing:.28em;
-      color:#b9914d;text-transform:uppercase
-    }
-    h1{font-size:clamp(22px,3vw,42px);font-weight:500;margin:0;color:#f0d58d;
-      text-shadow:0 0 22px rgba(216,184,106,.12)}
-    .sub{
-      margin:8px auto 20px;max-width:760px;color:#9e804b;
-      font:12px/1.5 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase
-    }
-    .stage{
-      position:relative;
-      width:min(1080px,94vw);
-      height:clamp(470px,68vw,720px);
-      margin:0 auto;
-      perspective:1800px;
-      isolation:isolate;
-    }
-    .record{
-      position:absolute;left:50%;top:50%;
-      width:min(920px,88vw);aspect-ratio:4/3;
-      transform:translate(-50%,-48%) scale(.76);
-      opacity:0;filter:blur(4px) brightness(.55);
-      transition:transform 900ms cubic-bezier(.16,.76,.17,1),opacity 520ms ease 220ms,filter 800ms ease;
-      z-index:1;pointer-events:none
-    }
-    .record img{
-      width:100%;height:100%;display:block;object-fit:contain;
-      border:1px solid rgba(216,184,106,.48);
-      box-shadow:0 28px 80px rgba(0,0,0,.58),0 0 40px rgba(126,22,36,.18)
-    }
-    .book{
-      position:absolute;left:50%;top:50%;
-      width:clamp(230px,31vw,410px);
-      aspect-ratio:3/4;
-      transform:translate(-50%,-50%);
-      transform-style:preserve-3d;
-      transform-origin:left center;
-      z-index:3;
-      cursor:pointer;
-      border:0;background:none;padding:0;
-      transition:transform 1100ms cubic-bezier(.2,.72,.16,1),filter 800ms ease,opacity 650ms ease;
-      filter:drop-shadow(0 32px 35px rgba(0,0,0,.52))
-    }
-    .book:focus-visible{outline:2px solid #f0d58d;outline-offset:8px;border-radius:8px}
-    .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:7px;overflow:hidden}
-    .front{transform:rotateY(0)}
-    .front img{width:100%;height:100%;display:block;object-fit:cover}
-    .back{
-      transform:rotateY(180deg);
-      border:1px solid #a47d38;
-      background:
-        linear-gradient(110deg,rgba(255,255,255,.06),transparent 18%),
-        radial-gradient(circle at 55% 38%,rgba(126,20,36,.75),transparent 58%),
-        linear-gradient(135deg,#64101e,#230409 70%);
-      box-shadow:inset 0 0 0 5px rgba(206,171,91,.08),inset 15px 0 30px rgba(0,0,0,.35)
-    }
-    .back:after{
-      content:"VERA";position:absolute;inset:0;display:grid;place-items:center;
-      color:rgba(222,188,105,.42);letter-spacing:.35em;font-size:clamp(18px,3vw,38px)
-    }
-    .spine{
-      position:absolute;left:0;top:2%;bottom:2%;width:7px;z-index:8;
-      background:linear-gradient(90deg,#311018,#8c2936,#341018);
-      box-shadow:1px 0 4px rgba(0,0,0,.5)
-    }
-    .stage.open .record{
-      opacity:1;filter:blur(0) brightness(1);
-      transform:translate(-50%,-50%) scale(1);
-      pointer-events:auto
-    }
-    .stage.open .book{
-      transform:translate(-39%,-50%) rotateY(-158deg) translateX(-18%);
-      filter:drop-shadow(-16px 25px 25px rgba(0,0,0,.42));
-      opacity:.92
-    }
-    .scan{
-      position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.12;
-      background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,220,135,.16) 4px);
-      mix-blend-mode:screen
-    }
-    .hint{
-      margin-top:-6px;min-height:22px;
-      color:#b08e52;font:11px/1.5 Arial,sans-serif;
-      letter-spacing:.22em;text-transform:uppercase
-    }
-    .hint b{color:#e2bf6d;font-weight:600}
-    .status{
-      position:absolute;right:1.5%;top:4%;z-index:6;
-      font:10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;
-      letter-spacing:.12em;color:#bb9c5c;text-align:right;opacity:.72
-    }
-    .status:before{content:"●";color:#78a56c;margin-right:7px;text-shadow:0 0 8px #78a56c}
-    .loading .book{opacity:.22;pointer-events:none}
-    .loading .hint:after{content:"ACCESSING ARCHIVE…"}
-    .error .hint{color:#d67b78}
-    .error .hint:after{content:"ARCHIVE MEDIA UNAVAILABLE"}
-    @media(max-width:760px){
-      .topbar{height:58px;padding:0 14px}.kicker{display:none}
-      main{min-height:calc(100svh - 58px);padding:18px 8px 28px}
-      .sub{margin-bottom:8px;font-size:9px}
-      .stage{height:min(78svh,680px);width:98vw}
-      .record{width:96vw}
-      .book{width:min(58vw,300px)}
-      .stage.open .book{
-        transform:translate(-15%,-50%) rotateY(-150deg) translateX(-18%);
-        opacity:.55
-      }
-      .status{display:none}
-      .hint{font-size:9px;margin-top:-14px}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .book,.record{transition:none!important}
-      .stage.open .book{opacity:.08;transform:translate(-50%,-50%) scale(.92)}
-      .stage.open .record{transform:translate(-50%,-50%) scale(1)}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#170307">
+<title>Commander Vrax — Veydran Electronic Record of Achievement</title>
+<meta name="description" content="Verified Veydran Electronic Record of Achievement for Commander Vrax.">
+<style>
+:root{
+  --black:#090103;--deep:#160307;--wine:#30070e;--wine2:#4f0b17;
+  --red:#7b1626;--gold:#e4c36f;--gold2:#a77b35;--cream:#f6e5b1;
+  --muted:#b79a61;--line:rgba(228,195,111,.55);--shadow:rgba(0,0,0,.58);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:var(--cream)}
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 76% 12%,rgba(117,20,36,.22),transparent 33%),
+    radial-gradient(circle at 16% 68%,rgba(95,12,28,.16),transparent 28%),
+    linear-gradient(180deg,#180307 0%,#070102 100%);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.32;
+  background-image:
+    radial-gradient(circle,#caa85a 0 1px,transparent 1.3px),
+    radial-gradient(circle,#8d6730 0 1px,transparent 1.2px);
+  background-size:260px 230px,410px 370px;
+  background-position:21px 44px,130px 72px;
+}
+a{color:inherit}
+.sitebar{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(15px,4vw,56px);
+  border-bottom:1px solid rgba(228,195,111,.3);
+  background:linear-gradient(180deg,rgba(68,7,17,.82),rgba(25,2,7,.72));
+  position:relative;z-index:30;box-shadow:0 8px 28px rgba(0,0,0,.25)
+}
+.sitebrand{display:flex;align-items:center;gap:15px;text-decoration:none;color:var(--gold)}
+.logo{width:31px;height:39px;position:relative;display:inline-block}
+.logo:before,.logo:after{content:"";position:absolute;top:2px;width:8px;height:30px;background:var(--gold);clip-path:polygon(0 0,100% 12%,58% 100%,42% 100%)}
+.logo:before{left:4px;transform:rotate(-19deg)}
+.logo:after{right:4px;transform:rotate(19deg)}
+.logo i{position:absolute;left:12px;top:0;width:8px;height:38px;background:var(--gold);clip-path:polygon(45% 0,100% 20%,58% 100%,42% 100%,0 20%)}
+.sitebrand b{font-size:clamp(20px,2.4vw,31px);letter-spacing:.015em}
+.clearance{font:10px/1.35 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:#b89654;text-align:right}
+.shell{min-height:calc(100svh - 64px);display:grid;place-items:center;padding:22px 12px 42px}
+.stage{
+  width:min(1240px,96vw);height:min(790px,80vw);min-height:560px;max-height:calc(100svh - 96px);
+  position:relative;perspective:1900px;isolation:isolate
+}
+
+/* record */
+.record{
+  position:absolute;inset:0;border:1px solid var(--gold2);border-radius:3px;
+  background:
+    radial-gradient(circle at 77% 12%,rgba(123,25,38,.32),transparent 31%),
+    linear-gradient(180deg,#35060e 0%,#170307 100%);
+  box-shadow:0 32px 80px var(--shadow),inset 0 0 70px rgba(0,0,0,.28);
+  overflow:hidden;opacity:0;transform:scale(.92) translateY(10px);
+  filter:brightness(.68);transition:opacity .36s ease .32s,transform .9s cubic-bezier(.2,.78,.16,1),filter .65s ease;
+  z-index:2
+}
+.stage.open .record{opacity:1;transform:scale(1) translateY(0);filter:brightness(1)}
+.record:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,220,150,.035) 4px)
+}
+.record-header{
+  height:58px;display:flex;align-items:center;gap:20px;padding:0 26px;
+  border-bottom:1px solid var(--gold2);background:rgba(33,2,8,.72)
+}
+.record-header .mini-v{font-size:28px;color:var(--gold);font-weight:700;letter-spacing:-.16em;margin-right:2px}
+.record-header strong{font-size:23px;color:var(--gold)}
+.record-header .vera{padding-left:20px;border-left:1px solid var(--gold2);font-size:20px;color:var(--gold)}
+.record-header .vera small{font-size:10px;color:var(--muted);letter-spacing:.04em}
+.record-header nav{margin-left:auto;display:flex;gap:19px;font:9px Arial,sans-serif;letter-spacing:.13em;color:#c4a15b}
+.record-body{display:grid;grid-template-columns:154px 1fr;min-height:calc(100% - 58px)}
+.side{
+  border-right:1px solid rgba(228,195,111,.34);padding:22px 14px 15px;background:rgba(17,1,5,.34);
+  display:flex;flex-direction:column
+}
+.side-item{
+  display:flex;align-items:center;gap:10px;padding:11px 9px;margin:0 -14px;
+  font:10px Arial,sans-serif;letter-spacing:.07em;color:#cbae67
+}
+.side-item.active{background:linear-gradient(90deg,rgba(169,54,62,.5),rgba(93,13,26,.25));border-left:3px solid var(--gold)}
+.side-ico{width:24px;text-align:center;color:var(--gold);font-size:17px}
+.side-motto{margin-top:auto;padding-top:24px;color:#af8b4b;font:9px/1.75 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.side-glyphs{font-size:19px;letter-spacing:.28em;color:#d2af61;margin-top:9px}
+.mainrec{padding:18px 20px 16px;display:flex;flex-direction:column;gap:13px;min-width:0}
+.banner{
+  position:absolute;right:0;top:58px;left:154px;height:164px;opacity:.28;pointer-events:none;
+  background:
+    radial-gradient(circle at 86% 30%,rgba(230,111,76,.65) 0 7%,transparent 8%),
+    linear-gradient(165deg,transparent 0 52%,rgba(0,0,0,.5) 53% 100%),
+    radial-gradient(ellipse at 66% 82%,rgba(112,29,36,.9),transparent 52%);
+}
+.banner:after{
+  content:"";position:absolute;left:48%;right:4%;bottom:20px;height:67px;
+  background:
+    linear-gradient(90deg,transparent 0 4%,#0e0205 4% 6%,transparent 6% 12%,#0e0205 12% 14%,transparent 14% 22%,#0e0205 22% 25%,transparent 25% 31%,#0e0205 31% 33%,transparent 33% 45%,#0e0205 45% 47%,transparent 47% 59%,#0e0205 59% 63%,transparent 63%);
+  clip-path:polygon(0 92%,4% 52%,7% 92%,12% 34%,16% 92%,23% 12%,27% 92%,34% 48%,39% 92%,45% 21%,49% 92%,57% 58%,62% 92%,68% 31%,73% 92%,80% 50%,84% 92%,91% 37%,96% 92%,100% 92%,100% 100%,0 100%)
+}
+.topline{position:relative;z-index:2;color:#bd9852;font:10px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.hero{display:grid;grid-template-columns:205px minmax(0,1fr) 230px;gap:22px;position:relative;z-index:3}
+.redacted{
+  height:294px;border:2px solid var(--gold);outline:1px solid #5b3513;outline-offset:-7px;
+  position:relative;overflow:hidden;background:
+    repeating-linear-gradient(0deg,rgba(208,44,56,.18) 0 2px,transparent 2px 5px),
+    radial-gradient(ellipse at 52% 39%,#040102 0 23%,transparent 24%),
+    linear-gradient(#210208,#090103);
+  box-shadow:inset 0 0 28px rgba(0,0,0,.7)
+}
+.redacted:before{
+  content:"";position:absolute;left:26%;right:25%;top:16%;height:54%;
+  background:#030102;clip-path:polygon(48% 0,65% 16%,74% 36%,72% 100%,26% 100%,25% 38%,36% 15%);
+  opacity:.92
+}
+.redacted .seal{position:absolute;left:12px;right:12px;top:51%;transform:translateY(-50%);padding:11px 4px;border-top:2px solid #bd3037;border-bottom:2px solid #bd3037;text-align:center;background:rgba(20,0,3,.86)}
+.redacted .seal b{display:block;font-size:25px;letter-spacing:.12em;color:#e45e60}
+.redacted .seal span{display:block;margin-top:7px;font:9px Arial,sans-serif;letter-spacing:.25em;color:#d26f62}
+.redacted .glyph{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#d9b45d;letter-spacing:.35em;font-size:17px}
+.identity h1{margin:2px 0 0;font-size:clamp(34px,4vw,62px);line-height:.98;color:#f1d27c;text-shadow:0 2px 16px rgba(0,0,0,.38)}
+.identity h2{margin:7px 0 4px;padding-bottom:7px;border-bottom:1px solid var(--gold2);font-size:clamp(19px,2vw,30px);font-weight:500;color:#edd28b}
+.verifyline{font-size:11px;color:#c39a55;margin-bottom:12px}
+.facts{display:grid;grid-template-columns:145px 1fr;border-top:1px solid rgba(228,195,111,.32)}
+.facts dt,.facts dd{margin:0;padding:8px 9px;border-bottom:1px solid rgba(228,195,111,.36)}
+.facts dt{font:10px Arial,sans-serif;letter-spacing:.19em;color:#d1ac63}
+.facts dd{font-size:14px;color:#f2dfad;border-left:1px solid rgba(228,195,111,.36)}
+.credential{
+  height:294px;border:2px solid var(--gold);outline:1px solid #6f491f;outline-offset:-8px;
+  padding:17px 14px;text-align:center;background:linear-gradient(180deg,rgba(54,5,13,.85),rgba(20,1,5,.88));
+  position:relative
+}
+.credential h3{margin:0 0 13px;padding-bottom:9px;border-bottom:1px solid var(--gold2);font-size:19px;font-weight:500}
+.badge{
+  width:104px;height:104px;border:2px solid var(--gold2);border-radius:50%;margin:0 auto 10px;
+  display:grid;place-items:center;position:relative;color:var(--gold);font-size:58px;font-weight:700
+}
+.badge:before,.badge:after{content:"❧";position:absolute;top:27px;font-size:31px;color:#d1ac5b}
+.badge:before{left:-16px;transform:rotate(-65deg)}.badge:after{right:-16px;transform:scaleX(-1) rotate(-65deg)}
+.credential b{display:block;font:10px/1.45 Arial,sans-serif;letter-spacing:.18em;color:#d2aa61}
+.credential .code{margin-top:12px;padding-top:10px;border-top:1px solid var(--gold2);font:11px ui-monospace,Consolas,monospace;letter-spacing:.12em;color:#ead9a8}
+.panel{border:1px solid var(--gold2);padding:12px 16px;background:rgba(28,2,7,.48);position:relative;z-index:3}
+.panel-title{margin:0 0 9px;padding-bottom:7px;border-bottom:1px solid var(--gold2);font-size:13px;letter-spacing:.21em;color:#e1bd69}
+.activities{display:grid;grid-template-columns:repeat(4,1fr)}
+.activity{min-width:0;padding:4px 14px 2px;display:grid;grid-template-columns:48px 1fr;gap:9px;border-right:1px solid rgba(228,195,111,.4)}
+.activity:last-child{border-right:0}
+.aicon{width:48px;height:48px;border:2px solid var(--gold2);border-radius:50%;display:grid;place-items:center;color:#efca70;font-size:22px}
+.activity h4{margin:2px 0 6px;font-size:13px;font-weight:500}.activity p{margin:0;font:8px/1.45 Arial,sans-serif;letter-spacing:.14em;color:#c4a468;text-transform:uppercase}
+.comment{display:grid;grid-template-columns:64px 1fr;align-items:center;gap:12px}
+.bookico{width:52px;height:52px;border:2px solid var(--gold2);border-radius:50%;display:grid;place-items:center;font-size:25px}
+.quote{font-size:19px;font-style:italic}.attribution{display:block;margin-top:7px;font-size:13px;color:#d0b274;font-style:normal}
+.footerline{position:relative;z-index:3;text-align:center;margin-top:auto;padding-top:1px;color:#d4ad5d;font-size:13px;font-style:italic}
+
+/* cover */
+.cover{
+  position:absolute;left:50%;top:50%;width:min(510px,42vw);aspect-ratio:3/4;
+  transform:translate(-50%,-50%);transform-origin:18px center;transform-style:preserve-3d;
+  z-index:20;cursor:pointer;border:0;padding:0;background:transparent;
+  transition:transform .92s cubic-bezier(.2,.75,.17,1),opacity .6s ease .28s,filter .7s ease;
+  filter:drop-shadow(0 32px 34px rgba(0,0,0,.52))
+}
+.cover:focus-visible{outline:2px solid var(--gold);outline-offset:9px}
+.coverface{position:absolute;inset:0;backface-visibility:hidden;border-radius:8px;overflow:hidden}
+.coverfront{
+  border:1px solid #4d111b;
+  background:
+    radial-gradient(circle at 28% 27%,rgba(187,40,50,.28),transparent 32%),
+    radial-gradient(circle at 72% 64%,rgba(105,9,25,.32),transparent 42%),
+    repeating-radial-gradient(ellipse at 40% 30%,rgba(255,255,255,.025) 0 1px,transparent 1px 4px),
+    linear-gradient(120deg,#7f1725,#5f0d1c 48%,#7a1523);
+  box-shadow:inset 16px 0 20px rgba(25,0,5,.35),inset 0 0 25px rgba(255,186,132,.08)
+}
+.coverfront:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:7px;background:linear-gradient(90deg,#431018,#a52737,#431018);box-shadow:3px 0 6px rgba(0,0,0,.38)}
+.corner{position:absolute;width:54px;height:54px;border-color:var(--gold);border-style:solid;filter:drop-shadow(0 1px 1px #4b240d)}
+.corner.tr{right:0;top:0;border-width:9px 9px 0 0;border-radius:0 8px 0 0}.corner.br{right:0;bottom:0;border-width:0 9px 9px 0;border-radius:0 0 8px 0}
+.covermark{position:absolute;top:9%;left:12%;right:9%;text-align:center;color:#f0cf79}
+.cover-v{font-size:60px;font-weight:700;line-height:.8;margin-bottom:14px}
+.stair{position:absolute;left:13%;top:28%;width:116px;height:94px}
+.stair span{position:absolute;height:15px;background:var(--gold);transform-origin:left center}
+.stair span:nth-child(1){left:0;top:66px;width:54px}.stair span:nth-child(2){left:40px;top:40px;width:54px}.stair span:nth-child(3){left:80px;top:14px;width:54px}
+.stair span:after{content:"";position:absolute;left:0;bottom:0;width:15px;height:41px;background:var(--gold)}
+.cover-title{font-size:clamp(26px,3vw,42px);line-height:1.03;margin:32px 0 0 15%;text-align:left;text-shadow:0 1px 0 rgba(75,30,4,.4)}
+.cover-sub{margin-top:22px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:25px;letter-spacing:.31em}
+.cover-sub:before,.cover-sub:after{content:"";height:1px;width:85px;background:var(--gold)}
+.coverback{
+  transform:rotateY(180deg);
+  border:1px solid #5b1820;
+  background:
+    radial-gradient(circle at 38% 28%,rgba(155,28,42,.26),transparent 38%),
+    repeating-radial-gradient(ellipse at 45% 40%,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(125deg,#741522,#4f0b17);
+  box-shadow:inset -20px 0 28px rgba(0,0,0,.34),inset 0 0 0 10px rgba(228,195,111,.035)
+}
+.coverback:after{content:"VERA";position:absolute;inset:0;display:grid;place-items:center;color:rgba(228,195,111,.18);font-size:41px;letter-spacing:.35em}
+.stage.open .cover{transform:translate(-54%,-50%) rotateY(-116deg) translateX(-40px);opacity:.2;filter:drop-shadow(-13px 20px 22px rgba(0,0,0,.32));pointer-events:none}
+.stage:not(.open) .record{pointer-events:none}
+.openhint{
+  position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);z-index:40;white-space:nowrap;
+  color:#b39251;font:10px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;transition:opacity .3s
+}
+.stage.open .openhint{opacity:0}
+.close{
+  position:absolute;right:15px;top:72px;z-index:50;border:1px solid rgba(228,195,111,.55);background:rgba(18,1,5,.72);
+  color:#d5b462;padding:8px 12px;cursor:pointer;font:10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;
+  opacity:0;pointer-events:none;transition:.25s
+}
+.stage.open .close{opacity:1;pointer-events:auto}
+.close:hover{background:#4b0b15;color:#f6dda0}
+
+@media(max-width:980px){
+  .stage{height:auto;min-height:760px;max-height:none}
+  .record{position:relative;inset:auto;min-height:740px}
+  .record-body{grid-template-columns:0 1fr}.side{display:none}.banner{left:0}
+  .hero{grid-template-columns:160px 1fr}.credential{display:none}
+  .redacted{height:252px}.facts{grid-template-columns:118px 1fr}
+  .activities{grid-template-columns:repeat(2,1fr);row-gap:10px}
+  .activity:nth-child(2){border-right:0}.activity{padding-bottom:9px}
+  .cover{width:min(470px,58vw)}
+}
+@media(max-width:680px){
+  .sitebar{height:56px}.clearance{display:none}.sitebrand b{font-size:21px}
+  .shell{padding:14px 7px 32px}.stage{min-height:760px;width:98vw}
+  .record-header{height:52px;padding:0 13px}.record-header strong{font-size:16px}.record-header .vera{font-size:14px}.record-header nav{display:none}
+  .record-body{min-height:calc(100% - 52px)}.banner{top:52px;height:140px}
+  .mainrec{padding:12px 10px;gap:9px}
+  .topline{font-size:8px}
+  .hero{grid-template-columns:105px 1fr;gap:10px}
+  .redacted{height:212px}.redacted .seal b{font-size:15px}.redacted .seal span{font-size:6px;letter-spacing:.14em}
+  .identity h1{font-size:28px}.identity h2{font-size:15px}.verifyline{font-size:8px;margin-bottom:6px}
+  .facts{grid-template-columns:82px 1fr}.facts dt{font-size:7px;padding:6px 5px}.facts dd{font-size:10px;padding:6px 5px}
+  .panel{padding:9px}.activities{grid-template-columns:1fr 1fr}.activity{grid-template-columns:36px 1fr;padding:3px 7px;gap:6px}
+  .aicon{width:34px;height:34px;font-size:16px}.activity h4{font-size:10px}.activity p{font-size:6px}
+  .comment{grid-template-columns:44px 1fr}.bookico{width:40px;height:40px}.quote{font-size:13px}.attribution{font-size:10px}
+  .footerline{font-size:10px}
+  .cover{width:min(82vw,410px)}
+  .stage.open .cover{transform:translate(-44%,-50%) rotateY(-108deg) translateX(-26px)}
+  .close{top:60px;right:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cover,.record{transition:none!important}.stage.open .cover{opacity:0}.stage.open .record{opacity:1}
+}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/" aria-label="Veydran.space home"><span>Veydran.space</span></a>
-    <div class="kicker">VERA // Personnel Archive // Clearance Confirmed</div>
-  </header>
+<header class="sitebar">
+  <a class="sitebrand" href="/" aria-label="Veydran.space home"><span class="logo"><i></i></span><b>Veydran.space</b></a>
+  <div class="clearance">VERA // Personnel Archive<br>Clearance Confirmed</div>
+</header>
 
-  <main>
-    <section class="archive" aria-labelledby="pageTitle">
-      <p class="eyebrow">Veydran Electronic Record of Achievement</p>
-      <h1 id="pageTitle">Commander Vrax</h1>
-      <p class="sub">Verified academic and strategic accreditation record // image data sealed by Veydran authority</p>
-
-      <div class="stage loading" id="stage">
-        <div class="status">RECORD VERIFIED<br>VSA-VAEI-9K-VRAX-7743</div>
-
-        <div class="record" id="record" role="button" tabindex="-1" aria-label="Close Commander Vrax record">
-          <img id="recordImg" alt="Commander Vrax's redacted Veydran Electronic Record of Achievement">
-        </div>
-
-        <button class="book" id="book" type="button" aria-expanded="false" aria-controls="record" aria-label="Open Commander Vrax's Veydran Electronic Record of Achievement">
-          <span class="face front"><img id="coverImg" alt="Veydran Electronic Record of Achievement cover"></span>
-          <span class="face back" aria-hidden="true"></span>
-          <span class="spine" aria-hidden="true"></span>
-        </button>
-        <div class="scan" aria-hidden="true"></div>
+<main class="shell">
+  <section class="stage" id="stage" aria-label="Commander Vrax electronic record of achievement">
+    <article class="record" id="record" aria-hidden="true">
+      <div class="record-header">
+        <span class="mini-v">V</span><strong>Veydran.space</strong>
+        <span class="vera">VERA <small>— Veydran Electronic Record of Achievement</small></span>
+        <nav><span>ARCHIVE</span><span>PERSONNEL</span><span>INSTITUTIONS</span><span>ABOUT</span></nav>
       </div>
+      <div class="banner"></div>
+      <div class="record-body">
+        <aside class="side">
+          <div class="side-item active"><span class="side-ico">▤</span> RECORD</div>
+          <div class="side-item"><span class="side-ico">▥</span> ACHIEVEMENTS</div>
+          <div class="side-item"><span class="side-ico">◉</span> ACTIVITIES</div>
+          <div class="side-item"><span class="side-ico">❧</span> TUTOR COMMENT</div>
+          <div class="side-item"><span class="side-ico">⊘</span> VERIFICATION</div>
+          <div class="side-motto">Discipline<br>Acquisition<br>Stability<br>A wider tomorrow<div class="side-glyphs">⌁⌬⌖⌑</div></div>
+        </aside>
 
-      <div class="hint" id="hint" aria-live="polite"></div>
-    </section>
-  </main>
+        <div class="mainrec">
+          <div class="topline">VEYDRAN CIVILISATION &nbsp; // &nbsp; KNOWLEDGE · ACQUISITION · ADVANCE</div>
 
-  <script>
-    (() => {
-      const stage = document.getElementById('stage');
-      const book = document.getElementById('book');
-      const record = document.getElementById('record');
-      const coverImg = document.getElementById('coverImg');
-      const recordImg = document.getElementById('recordImg');
-      const hint = document.getElementById('hint');
+          <div class="hero">
+            <div class="redacted">
+              <div class="seal"><b>REDACTED</b><span>SEALED BY VEYDRAN AUTHORITY</span></div>
+              <div class="glyph">⌁ ⌬ ⌖ ⌑</div>
+            </div>
 
-      const loadB64 = async (url) => {
-        const r = await fetch(url, {cache:'force-cache'});
-        if (!r.ok) throw new Error('asset');
-        return (await r.text()).replace(/\s+/g,'');
-      };
+            <div class="identity">
+              <h1>Commander Vrax</h1>
+              <h2>Electronic Record of Achievement</h2>
+              <div class="verifyline">Verified academic and strategic accreditation record // image data sealed by Veydran authority</div>
+              <dl class="facts">
+                <dt>INSTITUTION</dt><dd>Valgerden Institute of Strategic Acquisition</dd>
+                <dt>STUDY FIELD</dt><dd>Planetary Acquisition</dd>
+                <dt>RESIDENCE</dt><dd>Kappa Kappa Strategic Residence</dd>
+                <dt>CLASSIFICATION</dt><dd>Vaelkor Prime</dd>
+                <dt>ASSESSMENT</dt><dd>Ninth Kharad completed</dd>
+              </dl>
+            </div>
 
-      const setOpen = (open) => {
-        stage.classList.toggle('open', open);
-        book.setAttribute('aria-expanded', String(open));
-        book.setAttribute('aria-label', open ? 'Close Commander Vrax record' : "Open Commander Vrax's Veydran Electronic Record of Achievement");
-        record.tabIndex = open ? 0 : -1;
-        hint.innerHTML = open ? '<b>RECORD UNSEALED</b> // SELECT AGAIN OR PRESS ESC TO CLOSE' : '<b>SELECT RECORD</b> // OPEN VERIFIED CREDENTIAL';
-      };
+            <div class="credential">
+              <h3>Verified Credential</h3>
+              <div class="badge">V</div>
+              <b>VEYDRAN STRATEGIC<br>ACQUISITION AUTHORITY</b>
+              <div class="code">ID CODE<br>VSA-VAEI-9K-VRAX-7743</div>
+            </div>
+          </div>
 
-      Promise.all([
-        loadB64('assets/cover.b64'),
-        loadB64('assets/record.b64')
-      ]).then(([cover, recordData]) => {
-        coverImg.src = 'data:image/webp;base64,' + cover;
-        recordImg.src = 'data:image/webp;base64,' + recordData;
-        return Promise.all([coverImg.decode(), recordImg.decode()]);
-      }).then(() => {
-        stage.classList.remove('loading');
-        hint.innerHTML = '<b>SELECT RECORD</b> // OPEN VERIFIED CREDENTIAL';
-      }).catch(() => {
-        stage.classList.remove('loading');
-        stage.classList.add('error');
-      });
+          <section class="panel">
+            <h3 class="panel-title">ACTIVITIES</h3>
+            <div class="activities">
+              <div class="activity"><div class="aicon">⌁</div><div><h4>Culinary Nutrient Block Appreciation Society</h4><p>Exploration of nutritional diversity across acquired worlds.</p></div></div>
+              <div class="activity"><div class="aicon">◫</div><div><h4>Orbital Debate Society</h4><p>Strategic discourse. Multi-perspective analysis. Controlled dissent.</p></div></div>
+              <div class="activity"><div class="aicon">▲</div><div><h4>Interfaculty Siege Team</h4><p>Practical strategy, resource coordination and controlled exercises.</p></div></div>
+              <div class="activity"><div class="aicon">⚔</div><div><h4>Competitive Annexation</h4><p>Simulation. Planning. Execution. A higher score for a wider tomorrow.</p></div></div>
+            </div>
+          </section>
 
-      book.addEventListener('click', () => setOpen(!stage.classList.contains('open')));
-      record.addEventListener('click', () => setOpen(false));
-      record.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(false); book.focus(); }
-      });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && stage.classList.contains('open')) { setOpen(false); book.focus(); }
-      });
-    })();
-  </script>
+          <section class="panel comment">
+            <div class="bookico">▤</div>
+            <div class="quote">“Academic performance was described as concerningly effective.”<span class="attribution">— Valgerden Institute of Strategic Acquisition</span></div>
+          </section>
+
+          <div class="footerline">This record should be retained for future command consideration.</div>
+        </div>
+      </div>
+    </article>
+
+    <button class="cover" id="cover" type="button" aria-expanded="false" aria-controls="record" aria-label="Open Commander Vrax's Veydran Electronic Record of Achievement">
+      <span class="coverface coverfront">
+        <span class="corner tr"></span><span class="corner br"></span>
+        <span class="covermark">
+          <span class="cover-v">V</span>
+          <span class="stair"><span></span><span></span><span></span></span>
+          <span class="cover-title">Veydran<br>Electronic Record<br>of Achievement</span>
+          <span class="cover-sub">VERA</span>
+        </span>
+      </span>
+      <span class="coverface coverback" aria-hidden="true"></span>
+    </button>
+
+    <button class="close" id="close" type="button">Close record</button>
+    <div class="openhint">Select record // open verified credential</div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const stage=document.getElementById('stage');
+  const cover=document.getElementById('cover');
+  const close=document.getElementById('close');
+  const record=document.getElementById('record');
+
+  const setOpen=(open)=>{
+    stage.classList.toggle('open',open);
+    cover.setAttribute('aria-expanded',String(open));
+    record.setAttribute('aria-hidden',String(!open));
+    if(open) setTimeout(()=>close.focus({preventScroll:true}),720);
+  };
+  cover.addEventListener('click',()=>setOpen(true));
+  close.addEventListener('click',()=>{setOpen(false);setTimeout(()=>cover.focus({preventScroll:true}),250)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stage.classList.contains('open')){setOpen(false);cover.focus({preventScroll:true})}});
+})();
+</script>
 </body>
 </html>
