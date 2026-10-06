@@ -1,54 +1,123 @@
 <!doctype html>
-<html lang="x-vey">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#05070a">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Directory unavailable // Veydran Interstellar Authority</title>
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#05070a" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Archive 34-V // Unindexed</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <style>
-    :root{--cyan:#59dcff;--text:#e8f8fb;--muted:#78959e;--line:rgba(84,213,242,.18)}
+    :root{--cyan:#59dcff;--mint:#6dffc4;--text:#e8f8fb;--muted:#78959e;--line:rgba(84,213,242,.18);--panel:rgba(5,17,23,.88)}
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:#030609;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    body{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,rgba(36,161,201,.08),transparent 35%),linear-gradient(#020507,#06090c)}
-    .language-toggle{position:fixed;right:18px;top:18px;border:1px solid rgba(89,220,255,.35);background:#06202a;color:var(--cyan);padding:9px 12px;font:800 9px/1 system-ui;letter-spacing:1.2px;cursor:pointer}
-    .panel{width:min(680px,calc(100% - 32px));border:1px solid var(--line);background:rgba(5,17,23,.9);padding:32px}
-    .code{font-size:9px;letter-spacing:2px;color:var(--cyan);margin-bottom:14px}
-    h1{margin:0 0 16px;font-size:clamp(34px,7vw,64px);line-height:.95;letter-spacing:-2px}
-    p{margin:0 0 24px;color:#91aab2;line-height:1.65}
-    a{display:inline-block;border:1px solid rgba(89,220,255,.35);background:#06202a;color:var(--text);padding:12px 16px;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:1.4px}
-    a:hover{border-color:var(--cyan)}
-    .fine{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:8px;letter-spacing:1.4px;color:#536e76}
+    html{background:#030609;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{margin:0;min-height:100vh;background:
+      radial-gradient(circle at 78% 12%,rgba(188,42,125,.10),transparent 31%),
+      radial-gradient(circle at 17% 40%,rgba(36,161,201,.08),transparent 30%),
+      linear-gradient(#020507,#06090c 55%,#020405)}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 4px)}
+    .shell{width:min(1120px,calc(100% - 32px));margin:auto;padding:28px 0 60px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:0 0 20px;margin-bottom:48px}
+    .brand{font-size:12px;font-weight:850;letter-spacing:1.8px}.brand small{display:block;color:#63848e;font-size:8px;letter-spacing:1.6px;margin-top:5px}
+    .archive-actions{display:flex;align-items:center;gap:10px}.status{font-size:8px;letter-spacing:1.5px;color:#ff9bbf;border:1px solid rgba(255,104,159,.22);padding:8px 10px;background:rgba(73,7,31,.18)}.language-toggle{border:1px solid rgba(89,220,255,.35);background:rgba(4,27,40,.85);color:var(--cyan);padding:8px 10px;font-size:8px;font-weight:850;letter-spacing:1.2px;cursor:pointer}.language-toggle:hover{border-color:var(--cyan)}
+    .hero{max-width:850px;margin-bottom:34px}
+    .kicker{font-size:8px;letter-spacing:2px;color:var(--cyan);margin-bottom:12px}
+    h1{font-size:clamp(50px,8vw,96px);line-height:.9;letter-spacing:-4px;margin:0 0 24px}
+    .lede{font-size:15px;line-height:1.65;color:#9ab4bc;max-width:720px}
+    .warning{display:grid;grid-template-columns:auto 1fr;gap:16px;border:1px solid rgba(255,101,158,.22);background:rgba(51,5,22,.20);padding:16px 18px;margin:28px 0 34px}
+    .warning b{font-size:26px;color:#ff9cbe}.warning div{font-size:9px;letter-spacing:1.2px;color:#ba8799;line-height:1.55}.warning strong{color:#ffdce8}
+    .meta{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-bottom:18px;background:rgba(2,12,17,.65)}
+    .meta div{padding:13px 15px;border-right:1px solid var(--line)}.meta div:last-child{border:0}
+    .meta small{display:block;font-size:7px;letter-spacing:1.3px;color:#557680;margin-bottom:4px}.meta strong{font-size:9px;letter-spacing:1px}
+    .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .shot{position:relative;aspect-ratio:3/2;border:1px solid rgba(82,204,234,.16);overflow:hidden;background:#08090b}
+    .shot-img{position:absolute;z-index:0;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:1;filter:brightness(1.14) saturate(.92) contrast(1.04);transition:filter .25s ease,transform .35s ease}
+    .shot:after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(0deg,rgba(2,5,7,.68) 0%,rgba(2,5,7,.03) 40%,transparent 100%);pointer-events:none}
+    .shot:hover .shot-img{filter:brightness(1.28) saturate(.98) contrast(1.02);transform:scale(1.02)}
+    .caption{position:absolute;z-index:2;left:17px;right:17px;bottom:15px}.shot.media-error:before{content:attr(data-media-error);position:absolute;z-index:3;left:18px;top:18px;color:#ff9bbf;font-size:8px;letter-spacing:1.4px}
+    .caption small{display:block;font-size:7px;letter-spacing:1.5px;color:#7bdfff;margin-bottom:5px}.caption strong{display:block;font-size:17px;letter-spacing:-.2px;margin-bottom:4px}.caption span{font-size:9px;color:#88a1a9;letter-spacing:.35px}
+    .admin-note{margin-top:18px;padding:18px 20px;border:1px solid var(--line);background:var(--panel);display:flex;justify-content:space-between;gap:24px;align-items:center}
+    .admin-note p{margin:0;font-size:10px;line-height:1.55;color:#78949d;max-width:720px}.admin-note strong{color:#cfeef5}
+    .back{flex:none;text-decoration:none;color:#eafcff;border:1px solid rgba(86,220,250,.35);background:rgba(7,51,65,.62);padding:11px 14px;font-size:8px;font-weight:850;letter-spacing:1.2px}
+    footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:7px;letter-spacing:1.45px;color:#405d65;display:flex;justify-content:space-between;gap:18px}
+    @media(max-width:720px){.gallery{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta div{border-right:0;border-bottom:1px solid var(--line)}.meta div:last-child{border-bottom:0}.admin-note{align-items:flex-start;flex-direction:column}.top{align-items:flex-start}.status{display:none}.archive-actions{margin-left:auto}h1{letter-spacing:-2.5px}}
   </style>
 </head>
 <body>
-  <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
-  <main class="panel">
-    <div class="code">VEYDRAN PUBLIC DIRECTORY // ROUTE RESPONSE</div>
-    <h1>Directory unavailable.</h1>
-    <p>The requested record is not present in the public services index.</p>
-    <a href="/">RETURN TO PUBLIC NODE</a>
-    <div class="fine">TERRAN ACCESS // NO FURTHER INFORMATION AVAILABLE</div>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">VEYDRAN INTERSTELLAR AUTHORITY<small>UNINDEXED MEDIA CACHE // TERRAN MIRROR</small></div>
+      <div class="archive-actions">
+        <div class="status">DIRECTORY NOT PRESENT IN PUBLIC RECORDS</div>
+        <button class="language-toggle" id="languageToggle" type="button" data-no-vey="true">ENGLISH</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="kicker">ARCHIVE DIRECTIVE // 34-V</div>
+      <h1>Non-operational personnel imagery.</h1>
+      <p class="lede">You were not directed here. You found this directory through sustained and statistically unusual interaction with the public node. Command has chosen not to ask why.</p>
+    </section>
+
+    <section class="warning">
+      <b>34-V</b>
+      <div><strong>CLASSIFICATION: ADMINISTRATIVELY EMBARRASSING</strong><br/>Material below has no recognised tactical, diplomatic, nutritional or civic purpose.</div>
+    </section>
+
+    <section class="meta">
+      <div><small>SUBJECT</small><strong>FIELD PERSONNEL // REDACTED</strong></div>
+      <div><small>LOCATION</small><strong>TERRAN DOMESTIC UNIT // NIGHT</strong></div>
+      <div><small>OPERATIONAL VALUE</small><strong>NONE IDENTIFIED</strong></div>
+    </section>
+
+    <section class="gallery" aria-label="Archive 34-V media" data-media-layout="four-distinct-frames">
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-01.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync" fetchpriority="high"><div class="caption"><small>34-V // FRAME 01</small><strong>After-hours morale study</strong><span>Unauthorised domestic textile configuration.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-02.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 02</small><strong>Civilian lounge test</strong><span>Beverage not supplied by Command.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-03.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 03</small><strong>Window observation</strong><span>Operational relevance remains unproven.</span></div></article>
+      <article class="shot"><img class="shot-img" src="/assets/34v-frame-04.webp?v=20261002-hq1" alt="" aria-hidden="true" decoding="sync"><div class="caption"><small>34-V // FRAME 04</small><strong>Soft-asset interaction</strong><span>Plush organism status unresolved.</span></div></article>
+    </section>
+
+    <section class="admin-note">
+      <p><strong>ADMINISTRATIVE NOTE:</strong> Screenshots, redistribution and awkward questions remain entirely your responsibility. This directory will not appear in the public services index.</p>
+      <a class="back" href="/">RETURN TO PUBLIC NODE</a>
+    </section>
+
+    <footer><span>VEYDRAN ARCHIVE NODE // 34-V</span><span>TERRAN ACCESS: ACCIDENTALLY SUFFICIENT</span></footer>
   </main>
   <script>
-  (()=>{
-    const veyGlyphs=['⌁','⟊','⌬','⟟','⟁','⊘','⊚','⌖','⟡','⊹','⧖','⧗','⟠','⍜','⍟','⧈','⟐','⟢','⧇','⊞','⊡','⎔','⨳','⋮','⌗','⍉','⍖','⍗'];
-    const veyClusters=['TION','MENT','ING','TH','SH','CH','PH','QU','ER','AN','AR','EN','IN','ON','OR','ST','NT','RA','RE','VE','DR','TR','LL','SS','EE','OO'];
-    function veyHash(value){let hash=2166136261;for(let i=0;i<value.length;i+=1){hash^=value.charCodeAt(i);hash=Math.imul(hash,16777619);}return hash>>>0;}
-    function encodeVeyWord(word){const source=word.toUpperCase();const glyphs=[];let cursor=0;while(cursor<source.length){let chunk=veyClusters.find((cluster)=>source.startsWith(cluster,cursor));if(!chunk){const remaining=source.length-cursor;const width=remaining>=3&&(veyHash(source+'|'+cursor)%3===0)?3:Math.min(2,remaining);chunk=source.slice(cursor,cursor+width);}glyphs.push(veyGlyphs[veyHash(chunk+'|'+cursor+'|'+source.length)%veyGlyphs.length]);cursor+=chunk.length;}return glyphs.join('');}
-    function toVeydran(text){const leading=(text.match(/^\s*/)||[''])[0];const trailing=(text.match(/\s*$/)||[''])[0];const core=text.trim();if(!core)return text;const encoded=core.replace(/[A-Za-z]+|[^A-Za-z]+/g,(token)=>/^[A-Za-z]+$/.test(token)?encodeVeyWord(token):token.replace(/\s+/g,' · '));return leading+encoded+trailing;}
+    (() => {
+      const glyphMap={A:'∆',B:'β',C:'Ͼ',D:'Ð',E:'Ξ',F:'Ϝ',G:'Ǥ',H:'Ħ',I:'ɪ',J:'ʆ',K:'Ҡ',L:'Ł',M:'Ϻ',N:'И',O:'Θ',P:'Ƥ',Q:'Ҩ',R:'Я',S:'Ϟ',T:'Ŧ',U:'Ս',V:'Ѵ',W:'Ш',X:'Ж',Y:'Ұ',Z:'Ȥ'};
+      const toggle=document.getElementById('languageToggle');
+      const nodes=[];
+      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){
+        if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const parent=node.parentElement;
+        if(!parent || parent.closest('[data-no-vey="true"]') || ['SCRIPT','STYLE'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }});
+      let n; while((n=walker.nextNode())) nodes.push({node:n,english:n.nodeValue});
+      const toVey=(text)=>[...text].map(c=>glyphMap[c.toUpperCase()]||c).join('');
+      const readLang=()=>{const m=document.cookie.match(/(?:^|;\s*)vey_lang=(en|vey)(?:;|$)/);return m?m[1]:'vey';};
+      const saveLang=(v)=>{document.cookie='vey_lang='+v+'; Domain=veydran.space; Path=/; Max-Age=31536000; SameSite=Lax; Secure';};
+      let language=readLang();
+      function apply(){
+        const vey=language==='vey';
+        nodes.forEach(({node,english})=>node.nodeValue=vey?toVey(english):english);
+        document.documentElement.lang=vey?'x-vey':'en';
+        document.title=vey?toVey('Archive 34-V // Unindexed'):'Archive 34-V // Unindexed';
+        toggle.textContent=vey?'ENGLISH':'VEYDRAN';
+      }
+      toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});
+      const galleryImages=[...document.querySelectorAll('.shot-img')];
+      galleryImages.forEach((img)=>{
+        img.addEventListener('error',()=>{
+          const shot=img.closest('.shot');
+          if(shot){shot.classList.add('media-error');shot.setAttribute('data-media-error','MEDIA ASSET FAILED TO LOAD');}
+        });
+      });
 
-    const toggle=document.getElementById('languageToggle');
-    const nodes=[];
-    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(node){if(!node.nodeValue.trim())return NodeFilter.FILTER_REJECT;const parent=node.parentElement;if(!parent||parent.closest('[data-no-vey="true"]')||['SCRIPT','STYLE'].includes(parent.tagName))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
-    let node;while((node=walker.nextNode()))nodes.push({node,english:node.nodeValue});
-    function readLang(){const m=document.cookie.match(/(?:^|;\s*)vey_lang=(en|vey)(?:;|$)/);return m?m[1]:'vey';}
-    function saveLang(value){document.cookie='vey_lang='+value+'; Domain=veydran.space; Path=/; Max-Age=31536000; SameSite=Lax; Secure';}
-    let language=readLang();
-    function apply(){const vey=language==='vey';nodes.forEach(({node,english})=>node.nodeValue=vey?toVeydran(english):english);document.documentElement.lang=vey?'x-vey':'en';document.title=vey?toVeydran('Directory unavailable // Veydran Interstellar Authority'):'Directory unavailable // Veydran Interstellar Authority';toggle.textContent=vey?'ENGLISH':'VEYDRAN';}
-    toggle.addEventListener('click',()=>{language=language==='vey'?'en':'vey';saveLang(language);apply();});apply();
-  })();
+      apply();
+    })();
   </script>
 </body>
 </html>
