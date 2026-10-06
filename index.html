@@ -13,6 +13,7 @@
   <link rel="shortcut icon" href="favicon.svg?v=20261002-1" />
   <style>body.vey-loading{visibility:hidden}</style>
   <link rel="stylesheet" href="gateway-v9.css?v=20261002-6" />
+  <link rel="stylesheet" href="news-ticker.css?v=20261006-1" />
 </head>
 <body class="vey-loading">
   <div class="scanline" aria-hidden="true"></div>
@@ -52,6 +53,20 @@
       <div><small>NETWORK STATE</small><strong class="online">LOCAL MIRROR STABLE</strong></div>
       <div><small>VISIBLE SERVICES</small><strong>4 PUBLIC // 1 ACCESSIBLE</strong></div>
       <div><small>ARCHIVE RESPONSE ESTIMATE</small><strong>14–86 ROTATIONS</strong></div>
+    </section>
+
+    <section class="news-wire" id="newsWire" data-no-vey="true" aria-label="Veydran public news wire">
+      <div class="news-wire-label">
+        <strong><span class="news-wire-live">LIVE</span> // PUBLIC NEWS WIRE</strong>
+        <small id="newsTickerPoolCount">2,400 BULLETINS // NO QUICK REPEATS</small>
+      </div>
+      <div class="news-wire-viewport" id="newsTickerViewport">
+        <div class="news-wire-runner" id="newsTickerRunner">
+          <span class="news-wire-category" id="newsTickerCategory">GALACTIC</span>
+          <span class="news-wire-headline" id="newsTickerHeadline">INITIALISING INTERSTELLAR GOSSIP SUBSYSTEM...</span>
+          <span class="news-wire-separator" aria-hidden="true">◆</span>
+        </div>
+      </div>
     </section>
 
     <div class="section-intro">
@@ -310,5 +325,6 @@
 
   <script>window.setTimeout(()=>document.body.classList.remove('vey-loading'),1500);</script>
   <script src="gateway-v7.js?v=20261002-12"></script>\n  <script src="gateway-v9-art.js?v=20261002-1"></script>
+  <script src="news-ticker.js?v=20261006-1"></script>
 </body>
 </html>
