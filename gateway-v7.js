@@ -156,7 +156,7 @@
 
   const archive34vControls = ['vmail','records','assessment','command','singles','storage','brood'];
   // FUTURE FACE-REVEAL EASTER EGG: keep the original full-site puzzle dormant until launch.
-  const archive34vEnabled = false;
+  const archive34vEnabled = true;
   const archive34vProgressKey = 'vey_34v_progress_v2';
   let archive34vRevealTimer = null;
 
