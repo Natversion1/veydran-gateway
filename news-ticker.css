@@ -1,0 +1,142 @@
+/* Veydran public news wire */
+.news-wire {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 18px 0 4px;
+  min-height: 58px;
+  border: 1px solid rgba(57,214,255,.24);
+  background:
+    linear-gradient(90deg, rgba(10,67,88,.36), rgba(3,18,28,.96) 24%, rgba(3,14,22,.98));
+  box-shadow: inset 0 0 34px rgba(57,214,255,.035);
+  overflow: hidden;
+  position: relative;
+}
+.news-wire::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cyan), transparent 65%);
+  opacity: .75;
+}
+.news-wire-label {
+  min-width: 205px;
+  padding: 11px 16px 9px;
+  border-right: 1px solid rgba(57,214,255,.22);
+  background: rgba(4,31,44,.9);
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  position: relative;
+  z-index: 2;
+}
+.news-wire-label strong {
+  color: #dffaff;
+  font-size: 11px;
+  letter-spacing: 1.55px;
+  line-height: 1.1;
+}
+.news-wire-label small {
+  color: #608899;
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+}
+.news-wire-live {
+  color: var(--ok);
+}
+.news-wire-live::before {
+  content: "●";
+  margin-right: 6px;
+  text-shadow: 0 0 9px var(--ok);
+}
+.news-wire-viewport {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  height: 56px;
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+.news-wire-runner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translateX(110vw);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.news-wire-category {
+  flex: 0 0 auto;
+  padding: 5px 8px 4px;
+  border: 1px solid rgba(57,214,255,.28);
+  color: var(--cyan);
+  background: rgba(4,36,49,.92);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+}
+.news-wire-headline {
+  color: #cbeaf3;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .75px;
+}
+.news-wire-separator {
+  color: rgba(57,214,255,.45);
+  font-size: 12px;
+}
+.news-wire[data-category="FOOD WATCH"] .news-wire-category,
+.news-wire[data-category="FIELD WATCH"] .news-wire-category {
+  color: #9cf4c8;
+  border-color: rgba(101,255,192,.28);
+  background: rgba(4,45,39,.72);
+}
+.news-wire[data-category="TERRAN"] .news-wire-category {
+  color: #b8c9ff;
+  border-color: rgba(128,148,255,.28);
+  background: rgba(21,28,60,.72);
+}
+.news-wire[data-category="ALERT"] .news-wire-category {
+  color: #ffb0bc;
+  border-color: rgba(255,100,124,.34);
+  background: rgba(63,20,30,.76);
+}
+@media (max-width: 720px) {
+  .news-wire { grid-template-columns: 1fr; }
+  .news-wire-label {
+    min-width: 0;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 12px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(57,214,255,.16);
+    padding: 8px 12px;
+  }
+  .news-wire-label small { text-align: right; overflow: hidden; text-overflow: ellipsis; }
+  .news-wire-viewport, .news-wire-runner { height: 48px; }
+  .news-wire-headline { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-wire-viewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .news-wire-runner {
+    position: static;
+    transform: none !important;
+    padding: 0 14px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .news-wire-headline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
