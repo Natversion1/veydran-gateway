@@ -7,8 +7,67 @@
   const categoryNode = document.getElementById("newsTickerCategory");
   const headlineNode = document.getElementById("newsTickerHeadline");
   const poolCountNode = document.getElementById("newsTickerPoolCount");
+  const liveNode = document.getElementById("newsTickerLive");
+  const titleNode = document.getElementById("newsTickerTitle");
 
   if (!wire || !viewport || !runner || !categoryNode || !headlineNode) return;
+
+  const veyGlyphs = [
+    '⌁','⟊','⌬','⟟','⟁','⊘','⊚','⌖','⟡','⊹','⧖','⧗','⟠','⍜',
+    '⍟','⧈','⟐','⟢','⧇','⊞','⊡','⎔','⨳','⋮','⌗','⍉','⍖','⍗'
+  ];
+  const veyClusters = [
+    'TION','MENT','ING','TH','SH','CH','PH','QU','ER','AN','AR','EN','IN','ON',
+    'OR','ST','NT','RA','RE','VE','DR','TR','LL','SS','EE','OO'
+  ];
+
+  function veyHash(value) {
+    let hash = 2166136261;
+    for (let i = 0; i < value.length; i += 1) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function encodeVeyWord(word) {
+    const source = word.toUpperCase();
+    const glyphs = [];
+    let cursor = 0;
+    while (cursor < source.length) {
+      let chunk = veyClusters.find((cluster) => source.startsWith(cluster, cursor));
+      if (!chunk) {
+        const remaining = source.length - cursor;
+        const width = remaining >= 3 && (veyHash(source + '|' + cursor) % 3 === 0)
+          ? 3
+          : Math.min(2, remaining);
+        chunk = source.slice(cursor, cursor + width);
+      }
+      glyphs.push(veyGlyphs[veyHash(chunk + '|' + cursor + '|' + source.length) % veyGlyphs.length]);
+      cursor += chunk.length;
+    }
+    return glyphs.join('');
+  }
+
+  function toVeydran(text) {
+    const leading = (text.match(/^\s*/) || [''])[0];
+    const trailing = (text.match(/\s*$/) || [''])[0];
+    const core = text.trim();
+    if (!core) return text;
+    const encoded = core.replace(/[A-Za-z]+|[^A-Za-z]+/g, (token) => {
+      if (/^[A-Za-z]+$/.test(token)) return encodeVeyWord(token);
+      return token.replace(/\s+/g, ' · ');
+    });
+    return leading + encoded + trailing;
+  }
+
+  function currentLanguage() {
+    return document.body.dataset.lang === 'en' ? 'en' : 'vey';
+  }
+
+  function localiseTicker(text) {
+    return currentLanguage() === 'vey' ? toVeydran(text) : text;
+  }
 
   const TARGET_TOTAL = 2400;
   const TARGET_ALIEN = 1000;
@@ -248,7 +307,13 @@
   }
 
   const pool = unique([].concat(buildAlien(), buildTerran(), buildFood())).slice(0, TARGET_TOTAL);
-  if (poolCountNode) poolCountNode.textContent = pool.length.toLocaleString("en-GB") + " BULLETINS // NO QUICK REPEATS";
+  function updateTickerChrome() {
+    if (liveNode) liveNode.textContent = localiseTicker("LIVE");
+    if (titleNode) titleNode.textContent = localiseTicker("PUBLIC NEWS WIRE");
+    if (poolCountNode) poolCountNode.textContent = localiseTicker(pool.length.toLocaleString("en-GB") + " BULLETINS // NO QUICK REPEATS");
+  }
+
+  updateTickerChrome();
 
   function mulberry32(seed) {
     return function () {
@@ -311,11 +376,20 @@
   let activeAnimation = null;
   let fallbackTimer = null;
 
+  let currentItem = null;
+
   function paint(item) {
-    categoryNode.textContent = item.category;
-    headlineNode.textContent = item.text;
+    currentItem = item;
+    categoryNode.textContent = localiseTicker(item.category);
+    headlineNode.textContent = localiseTicker(item.text);
     wire.dataset.category = item.category;
   }
+
+  const languageObserver = new MutationObserver(() => {
+    updateTickerChrome();
+    if (currentItem) paint(currentItem);
+  });
+  languageObserver.observe(document.body, { attributes: true, attributeFilter: ['data-lang'] });
 
   function runStatic() {
     paint(nextHeadline());
@@ -361,6 +435,7 @@
   window.addEventListener("beforeunload", () => {
     if (fallbackTimer) window.clearTimeout(fallbackTimer);
     if (activeAnimation) activeAnimation.cancel();
+    languageObserver.disconnect();
   });
 
   console.log("VEYDRAN NEWS WIRE // " + pool.length + " BULLETINS LOADED // SHUFFLED NON-REPEAT QUEUE ACTIVE");
