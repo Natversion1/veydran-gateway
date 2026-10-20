@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#020a10">
+  <meta name="description" content="Publicly released notices, official correspondence and case files from the Veydran Interstellar Authority.">
+  <title>Public Document Registry | Veydran Interstellar Authority</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261020-1">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-head">
+      <a class="brand" href="/" aria-label="Veydran Interstellar Authority home">
+        <span class="seal" aria-hidden="true">V</span>
+        <span><strong>VEYDRAN INTERSTELLAR AUTHORITY</strong><small>OFFICE OF RECORDS &amp; PUBLIC DISCLOSURE</small></span>
+      </a>
+      <nav aria-label="Top navigation">
+        <span class="node-live">PUBLIC MIRROR ONLINE</span>
+        <a class="back-link" href="/">RETURN TO PUBLIC NODE ↗</a>
+      </nav>
+    </header>
+    <main>
+      <div class="crumbs"><a href="/">PUBLIC NODE</a><span>//</span>OFFICIAL DOCUMENT REGISTER</div>
+      <section class="hero" aria-labelledby="pageTitle">
+        <div>
+          <div class="kicker">DOCUMENT CONTROL OFFICE // TERRAN ACCESS TIER 0</div>
+          <h1 id="pageTitle">The public record.</h1>
+          <p class="lead">Formal declarations, diplomatic correspondence, field reports and other documents the Veydran Authority has reluctantly agreed to make visible to Earth.</p>
+        </div>
+        <aside class="clearance-stamp" aria-label="Public release classification">
+          <small>ACCESS CLASSIFICATION</small>
+          <strong>PUBLIC</strong>
+          <span>AVAILABLE TO TERRAN OBSERVERS<br>THIS DOES NOT MAKE YOU IMPORTANT.</span>
+        </aside>
+      </section>
+
+      <div class="rail" aria-label="Registry information">
+        <div><small>REGISTER STATUS</small><strong class="live">ACTIVE // PUBLIC MIRROR</strong></div>
+        <div><small>DOCUMENTS / CASES INDEXED</small><strong>002 // INITIAL REGISTER</strong></div>
+        <div><small>RESTRICTED IMPERIAL ARCHIVES</small><strong>STILL NOT YOUR BUSINESS</strong></div>
+      </div>
+
+      <section class="feature" aria-labelledby="featuredCase">
+        <div>
+          <div class="kicker">FEATURED DOSSIER // TERRESTRIAL NUTRITIONAL AFFAIRS</div>
+          <h2 id="featuredCase">The Battle of the A57</h2>
+          <p>An administrative incident involving rival burger signage has been entered into the permanent Veydran record. Diplomatic correspondence is under review for public release.</p>
+          <div class="actions">
+            <a class="action" href="a57/">OPEN CASE FILE ↗</a>
+            <span class="tag">CASE OPEN // FILINGS PENDING</span>
+          </div>
+        </div>
+        <div class="docket">
+          <div><small>IMPERIAL CASE REFERENCE</small><strong>T-00-447</strong></div>
+          <div><small>FIELD OFFICER</small><strong>CMDR. VRAX</strong></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="indexTitle">
+        <div class="section-heading">
+          <div><div class="kicker">SEARCHABLE PUBLIC INDEX</div><h2 id="indexTitle">Released records</h2></div>
+          <small>ALL ENTRIES ASSIGNED A PERMANENT REFERENCE</small>
+        </div>
+        <div class="tools">
+          <input class="search" type="search" id="search" placeholder="SEARCH REFERENCE, TITLE OR SUBJECT..." aria-label="Search records">
+          <div class="filters" aria-label="Filter by record type">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">ALL FILES</button>
+            <button class="filter" type="button" data-filter="incident" aria-pressed="false">INCIDENTS</button>
+            <button class="filter" type="button" data-filter="notice" aria-pressed="false">NOTICES</button>
+          </div>
+        </div>
+        <div class="record-list" id="recordList">
+          <article class="record" data-type="incident" data-search="t-00-447 battle of the a57 burger wars incident signage field commander vrax">
+            <div><div class="id">T-00-447</div><div class="record-type">INCIDENT DOSSIER</div></div>
+            <div class="record-main">
+              <h3>Battle of the A57 — Public Case File</h3>
+              <p>Terrestrial roadside marketing conflict, burger-related diplomatic activity and pending correspondence.</p>
+              <div class="meta">ORIGINATING OFFICE // CULTURAL &amp; NUTRITIONAL RECONNAISSANCE</div>
+            </div>
+            <div class="record-end">
+              <span class="tag">CASE OPEN</span><a class="action" href="a57/">READ FILE ↗</a>
+            </div>
+          </article>
+          <article class="record" data-type="notice" data-search="pr-000 opening the public records registry disclosure circular notice authority">
+            <div><div class="id">PR-000</div><div class="record-type">PUBLIC NOTICE</div></div>
+            <div class="record-main">
+              <h3>Notice of Establishment — Public Registry</h3>
+              <p>Formal notification that selected Veydran documentation may now be inspected by the local species.</p>
+              <div class="meta">ISSUING OFFICE // RECORDS &amp; PUBLIC DISCLOSURE</div>
+            </div>
+            <div class="record-end">
+              <span class="tag mint">PUBLIC RELEASE</span><a class="action" href="pr-000/">READ NOTICE ↗</a>
+            </div>
+          </article>
+        </div>
+        <p id="noResults" class="no-results" hidden>No records match your query. The bureaucracy considers this an excellent result.</p>
+        <p id="searchCount" class="meta" role="status" aria-live="polite" style="font-size:10px;color:#7ea4b0;letter-spacing:1px">DISPLAYING 2 OF 2 PUBLIC ENTRIES</p>
+      </section>
+
+      <aside class="procedure">
+        <strong>DOCUMENT CONTROL // READER ADVISORY</strong>
+        <p>Public case summaries may appear before supporting letters or PDFs are approved for publication. No restricted material can be accessed through this register. Printed documents may have different classification markings; always rely on the displayed release status. Requests for access to Imperial Records will continue to be rejected.</p>
+      </aside>
+    </main>
+    <footer class="site-footer">
+      <span>VEYDRAN INTERSTELLAR AUTHORITY // PUBLIC RELEASE NODE PR-00</span>
+      <span>REALITY OFFSET +1 // <a href="/">RETURN TO CIVIC NETWORK</a></span>
+      <span>AN ALIEN EATS EARTH FICTIONAL ARCHIVE</span>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      'use strict';
+      const search = document.getElementById('search');
+      const filters = [...document.querySelectorAll('[data-filter]')];
+      const records = [...document.querySelectorAll('.record')];
+      const empty = document.getElementById('noResults');
+      const count = document.getElementById('searchCount');
+      let type = 'all';
+      function apply() {
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+        records.forEach(record => {
+          const show = (type === 'all' || record.dataset.type === type) &&
+            (!query || record.dataset.search.includes(query) || record.textContent.toLowerCase().includes(query));
+          record.hidden = !show;
+          if (show) visible++;
+        });
+        empty.hidden = visible !== 0;
+        count.textContent = 'DISPLAYING ' + visible + ' OF ' + records.length + ' PUBLIC ENTRIES';
+      }
+      search.addEventListener('input', apply);
+      filters.forEach(button => button.addEventListener('click', () => {
+        type = button.dataset.filter;
+        filters.forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+        apply();
+      }));
+    })();
+  </script>
+</body>
+</html>
