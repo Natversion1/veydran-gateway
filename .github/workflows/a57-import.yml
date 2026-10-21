@@ -1,0 +1,44 @@
+name: Import approved A57 exhibits
+on:
+  push:
+    branches: [feature/a57-exhibits]
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.event.head_commit.message == 'Stage A57 artwork importer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and validate original exhibits
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p records/files
+          curl --fail --location --silent --show-error --retry 2 --max-time 150 'https://at.adobe.com/XU2Dq3YBQIP4KDVI' -o records/files/a57-anonymous-note-front.png
+          curl --fail --location --silent --show-error --retry 2 --max-time 150 'https://at.adobe.com/Lf0tdV5sw5HxOsco' -o records/files/a57-anonymous-note-reverse.png
+          curl --fail --location --silent --show-error --retry 2 --max-time 150 'https://at.adobe.com/7Z21n3nozwHwEUDk' -o records/files/a57-we-love-bjs.png
+          curl --fail --location --silent --show-error --retry 2 --max-time 150 'https://at.adobe.com/ivpFBZLw8UdQwtf5' -o records/files/a57-signage-ceasefire-directive.pdf
+          python3 - <<'PY'
+          from pathlib import Path
+          files = [
+            ('a57-anonymous-note-front.png', b'\x89PNG\r\n\x1a\n', 100000),
+            ('a57-anonymous-note-reverse.png', b'\x89PNG\r\n\x1a\n', 100000),
+            ('a57-we-love-bjs.png', b'\x89PNG\r\n\x1a\n', 100000),
+            ('a57-signage-ceasefire-directive.pdf', b'%PDF-', 100000),
+          ]
+          for name, magic, minsize in files:
+            path = Path('records/files') / name
+            blob = path.read_bytes()
+            if len(blob) < minsize or not blob.startswith(magic):
+              raise SystemExit(f'INVALID EXHIBIT: {name} ({len(blob)} bytes)')
+            print(name, len(blob), 'bytes OK')
+          PY
+      - name: Commit verified exhibits
+        run: |
+          git config user.name 'Veydran Records Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add records/files/
+          git diff --cached --quiet && exit 0
+          git commit -m 'Import original approved A57 exhibits'
+          git push
