@@ -1,9 +1,8 @@
 (() => {
   'use strict';
-  // Optional Umami Cloud analytics. Obtain this public website ID in Umami
-  // Settings > Websites > Edit > Tracking code. It is NOT an API key.
-  // Until configured, no visitor statistics are collected by this file.
-  const websiteId = '';
+  // Umami Cloud analytics for veydran.space. This public website ID comes
+  // from the site's tracking code, and is not a secret API key.
+  const websiteId = '313b5001-bd2d-4431-99fe-bbd3e084ca55';
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(websiteId)) return;
 
   // Do not duplicate a tracker installed separately.
