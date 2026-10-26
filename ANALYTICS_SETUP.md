@@ -1,24 +1,27 @@
 # Visitor analytics — Veydran.space
 
-The website is static (GitHub Pages/custom domain), so GitHub repository traffic is **not** website visitor traffic. We cannot measure real site visitors just by counting visits in the browser. Never display fabricated public visitor counts.
+The website is static (GitHub Pages/custom domain), so GitHub repository traffic is NOT real website visitor traffic. A browser-only counter cannot reliably count unique visitors across devices or browsers, and it must not display fabricated visitor totals.
 
-## Recommended: Cloudflare Web Analytics (free)
+## Recommended: Umami Cloud (free Hobby tier)
 
-Cloudflare Web Analytics reports page views, approximate visits, top pages, and referrers in a private dashboard. It is privacy-first and does not use visitor-tracking cookies. Its **visits** are *not* a guaranteed one-human-one-count unique visitor measure (different devices, blocked scripts, browsers and repeat visits affect figures). Treat them as estimates.
+Umami reports estimated **Visitors** (unique visitors over a chosen date range), **Visits**, **Pageviews**, top pages and referrers. Its Hobby plan has a free tier. It is privacy-oriented and cookie-free. Visitors are estimates rather than individually identified people: shared IP/browser combinations, tracking blockers and multiple devices can under/overcount.
 
-1. Create/sign into a Cloudflare account, open **Web Analytics**, select **Add a site**, and enter `veydran.space`.
-2. If you are proxying the domain through Cloudflare, you may enable automatic tracking without adding code. Do not enable both automatic and manual tracking.
-3. Otherwise, in **Manage site**, copy the public **site token** from the JS snippet.
-4. Put that token in `assets/web-analytics.js` as the `siteToken` value and commit to the main branch.
-5. The loader is referenced from the portal home, all current public-record pages, the Transmission Archive, and the Food Intelligence Database.
-6. View the private counts under Cloudflare > Web Analytics; filter by page path to compare which dossiers get traffic.
+1. Register or sign in at https://cloud.umami.is/ (Umami).
+2. Add website `veydran.space` in your Umami dashboard.
+3. Open that website's settings, choose **Edit**, and copy the public `data-website-id` GUID from its tracking snippet. **Never paste an account password or an API key into the repository.**
+4. In `assets/web-analytics.js`, set `const websiteId = 'YOUR-UMAMI-WEBSITE-ID';` using the actual UUID. Publish that one-file change.
+5. Analytics is already wired to the portal homepage, all currently known public-record pages, Incoming Transmissions and the Food Intelligence Database.
+6. Visit the site and inspect **Visitors** in Umami to measure approximate uniques. Compare per-path results to see which features people use.
 
-**Status:** integration prepared, **not collecting analytics until Cloudflare automatic tracking is enabled or a real site token is provided**. No token has been invented. No fake public counter has been created.
+**Current status:** the code hook is installed, but the `websiteId` is intentionally blank, so **no statistics are collected until an Umami website is connected**. Do not assert traffic totals before this step.
 
-Analytics reference: https://developers.cloudflare.com/web-analytics/get-started/
+Official sources: https://docs.umami.is/docs/collect-data ; https://docs.umami.is/docs/cloud/faq ; https://docs.umami.is/docs
 
-## Adding new content
-- Latest transmission: copy an `<article class="archive-entry">...</article>` in `transmissions/index.html`, increment the unique TX number, newest first. Update the register total automatically via existing JS.
-- New restaurant dossier: copy a `<details class="archive-entry">...</details>` in `intelligence/index.html`, set the unique ID and `data-type` / `data-search`, and add grounded metadata and links only when available.
-- Existing Veydran/English toggle automatically picks up static text on both pages. `data-search` stays English for search even while the glyphs are displayed.
-- Keep embargoed unreleased reviews sealed until explicitly approved for public release. Do not fabricate review ratings or point to guessed YouTube videos.
+## Content updates
+- Transmission Archive: add another `<details class="archive-entry">` in `transmissions/index.html`, newest first. Give it a unique TX code, `id`, `data-type` and English `data-search` terms. Count/filter UI updates automatically.
+- Food Intelligence: add another `<details class="archive-entry">` in `intelligence/index.html`, using the next numbered file ID. Keep unreleased reviews sealed until a public launch, and link only verified videos/artwork.
+- Existing shared language cookie is read by `records/language.js`; `ENGLISH/VEYDRAN` toggle persists across pages and does not break English keyword search.
+- No made-up food scores, publication dates or video URLs.
+
+## Site principle
+Public Registry cases remain distinct from Food Intelligence entries; T-00-447 is CLOSED regardless of whether new food surveys are filed.
