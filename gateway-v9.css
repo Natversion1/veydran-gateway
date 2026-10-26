@@ -721,3 +721,24 @@ footer span{color:#456d79}
   .records-release-action{grid-column:1}
   .records-release-copy h2{font-size:19px}
 }
+
+/* Public Earth field archives */
+.field-archive-section{margin:24px 0 28px}
+.field-archive-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:0 0 18px}
+.field-archive-head h2{font-size:clamp(28px,3.3vw,42px);letter-spacing:-1px;line-height:1.1;margin:10px 0 9px}
+.field-archive-head p{max-width:720px;color:#92b7c7;font-size:12px;line-height:1.65;margin:0}
+.field-archive-state{white-space:nowrap;color:#73e4c8;font-size:9px;letter-spacing:1.2px;border:1px solid rgba(109,239,203,.35);padding:8px 10px}
+.field-archive-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field-archive-tile{position:relative;min-width:0;overflow:hidden;padding:25px;background:linear-gradient(135deg,rgba(8,48,65,.88),rgba(3,19,31,.96));border:1px solid rgba(82,217,255,.33)}
+.field-archive-tile:before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(#59dfff,transparent)}
+.field-archive-tile:after{content:"";position:absolute;top:0;right:0;width:130px;height:130px;pointer-events:none;background:radial-gradient(circle,rgba(38,147,182,.16),transparent 66%)}
+.field-archive-top,.field-archive-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.field-archive-top span,.field-archive-foot span{font-size:9px;letter-spacing:1.1px;color:#80b3c3}
+.field-archive-top b{font-size:9px;letter-spacing:.7px;color:#8ef1d2}
+.field-archive-emblem{color:#72def8;font-size:27px;letter-spacing:5px;font-weight:800;margin:25px 0 11px;opacity:.85}
+.field-archive-tile h3{font-size:clamp(20px,2.4vw,28px);letter-spacing:-.5px;margin:8px 0 11px}
+.field-archive-tile p{font-size:12px;color:#a7c5d0;line-height:1.7;min-height:64px;margin:0 0 25px}
+.field-archive-foot{border-top:1px solid rgba(84,199,231,.2);padding-top:18px;flex-wrap:wrap}
+.field-archive-foot a{font-size:10px;letter-spacing:.8px;font-weight:800;text-decoration:none;color:#d4f7ff;padding:10px;border:1px solid rgba(83,217,252,.4);background:rgba(6,61,80,.6)}
+.field-archive-foot a:hover{background:#116077}
+@media(max-width:800px){.field-archive-grid{grid-template-columns:1fr}.field-archive-head{align-items:start}.field-archive-state{display:none}.field-archive-tile p{min-height:0}}
