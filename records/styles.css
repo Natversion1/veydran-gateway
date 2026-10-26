@@ -160,3 +160,22 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
   .file-row span{justify-self:start}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Records section: share the portal's visible bilingual control. */
+body.vey-loading{visibility:hidden}
+.language-toggle{
+  flex-shrink:0;
+  padding:11px 13px;
+  border:1px solid var(--strong);
+  background:rgba(3,32,45,.78);
+  color:var(--cyan);
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:1.2px;
+  min-width:86px;
+}
+.language-toggle:hover{background:rgba(17,88,107,.65);color:var(--ink)}
+@media(max-width:570px){
+  .language-toggle{font-size:8px;padding:9px;min-width:80px}
+}
