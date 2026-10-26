@@ -2,18 +2,23 @@
 
 The website is static (GitHub Pages/custom domain), so GitHub repository traffic is NOT real website visitor traffic. A browser-only counter cannot reliably count unique visitors across devices or browsers, and it must not display fabricated visitor totals.
 
-## Recommended: Umami Cloud (free Hobby tier)
+## Enabled: Umami Cloud (free Hobby tier)
 
 Umami reports estimated **Visitors** (unique visitors over a chosen date range), **Visits**, **Pageviews**, top pages and referrers. Its Hobby plan has a free tier. It is privacy-oriented and cookie-free. Visitors are estimates rather than individually identified people: shared IP/browser combinations, tracking blockers and multiple devices can under/overcount.
 
-1. Register or sign in at https://cloud.umami.is/ (Umami).
-2. Add website `veydran.space` in your Umami dashboard.
-3. Open that website's settings, choose **Edit**, and copy the public `data-website-id` GUID from its tracking snippet. **Never paste an account password or an API key into the repository.**
-4. In `assets/web-analytics.js`, set `const websiteId = 'YOUR-UMAMI-WEBSITE-ID';` using the actual UUID. Publish that one-file change.
-5. Analytics is already wired to the portal homepage, all currently known public-record pages, Incoming Transmissions and the Food Intelligence Database.
-6. Visit the site and inspect **Visitors** in Umami to measure approximate uniques. Compare per-path results to see which features people use.
+The public tracking Website ID `313b5001-bd2d-4431-99fe-bbd3e084ca55` was supplied by the site owner and configured on 26 October 2026 in `assets/web-analytics.js`.
 
-**Current status:** the code hook is installed, but the `websiteId` is intentionally blank, so **no statistics are collected until an Umami website is connected**. Do not assert traffic totals before this step.
+The loader is referenced on the portal homepage, all currently known public-record pages, Incoming Transmissions and the Food Intelligence Database. It loads Umami Cloud's official script once per page, uses `data-domains="veydran.space,www.veydran.space"` and honours Do Not Track.
+
+**Current status:** tracking code enabled in GitHub's main branch. Live delivery and data ingestion still need confirmation in the Umami dashboard after GitHub Pages deploys. No historical statistics are retroactively counted; do not assert traffic totals before inspecting Umami.
+
+To verify:
+1. Visit https://veydran.space/ after deployment (without an ad blocker and in a browser that permits analytics).
+2. Open https://cloud.umami.is/ and select the `veydran.space` website.
+3. Check Realtime, then review **Visitors** for estimated uniques, **Visits**, **Pageviews**, paths and referrers.
+4. If nothing appears, confirm deployment and browser tracking protections before altering the code.
+
+Never commit Umami account passwords or API keys; the website ID is a public tracker identifier.
 
 Official sources: https://docs.umami.is/docs/collect-data ; https://docs.umami.is/docs/cloud/faq ; https://docs.umami.is/docs
 
